@@ -24,7 +24,8 @@ def checkPrime(n):
 	PRIMES.append(n)
 	return True
 
-for possPrime in range(STARTPRIME, UPPERBOUND, JUMP):
-	checkPrime(possPrime)
+if __name__ == "__main__":
+	for possPrime in range(STARTPRIME, UPPERBOUND, JUMP):
+		checkPrime(possPrime)
 
-print sum(PRIMES)
+	print sum(PRIMES)

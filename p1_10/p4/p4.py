@@ -14,10 +14,11 @@ def isPalindrome(num):
 			return False
 	return True
 
-largestPalin = -1
-for firstNumber in range(100, 1000):
-	for secondNumber in range(100, 1000):
-		possPalin = firstNumber * secondNumber
-		if isPalindrome(possPalin) and possPalin > largestPalin:
-			largestPalin = possPalin
-print largestPalin
+if __name__ == "__main__":
+	largestPalin = -1
+	for firstNumber in range(100, 1000):
+		for secondNumber in range(100, 1000):
+			possPalin = firstNumber * secondNumber
+			if isPalindrome(possPalin) and possPalin > largestPalin:
+				largestPalin = possPalin
+	print largestPalin

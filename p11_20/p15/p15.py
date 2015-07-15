@@ -5,10 +5,13 @@
 #structure (double array). It's interesting to compare that structure
 #with Pascal's triangle. I'll do it for a 4 x 4 array (3 x 3 square)
 
-# 20 10  4  1
-# 10  6  3  1
-#  4  3  2  1
-#  1  1  1  1
+# 20 10  4  1                              1
+# 10  6  3  1                            1   1
+#  4  3  2  1       ROTATE             1   2   1
+#  1  1  1  1                        1   3   3   1
+#                                      4   6   4
+#                                        10 10 
+#                                          20
 
 #             1
 #           1   1
@@ -33,5 +36,6 @@ import math
 HEIGHT = 20
 WIDTH = 20
 
-print math.factorial(HEIGHT + WIDTH)/(math.factorial(HEIGHT) * 
-	math.factorial(WIDTH))
+if __name__ == "__main__":
+	print math.factorial(HEIGHT + WIDTH)/(math.factorial(HEIGHT) * 
+		math.factorial(WIDTH))

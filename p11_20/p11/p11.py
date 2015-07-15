@@ -43,14 +43,15 @@ def findBestOption(x, y, MATRIX, viableOptions):
 			bestProduct = currProduct
 	return bestProduct
 
-MATRIX = readData()
-WIDTH = len(MATRIX)
-HEIGHT = len(MATRIX[0])
-bestProduct = 0
-for x in range(WIDTH):
-	for y in range(HEIGHT):
-		viableOptions = findViableOptions(x, y, WIDTH, HEIGHT)
-		bestOption = findBestOption(x, y, MATRIX, viableOptions)
-		if bestOption > bestProduct:
-			bestProduct = bestOption
-print bestProduct
+if __name__ == "__main__":
+	MATRIX = readData()
+	WIDTH = len(MATRIX)
+	HEIGHT = len(MATRIX[0])
+	bestProduct = 0
+	for x in range(WIDTH):
+		for y in range(HEIGHT):
+			viableOptions = findViableOptions(x, y, WIDTH, HEIGHT)
+			bestOption = findBestOption(x, y, MATRIX, viableOptions)
+			if bestOption > bestProduct:
+				bestProduct = bestOption
+	print bestProduct

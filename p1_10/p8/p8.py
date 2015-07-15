@@ -23,13 +23,14 @@ def readData():
 		num += row
 	return map(int,list(num))
 
-num = readData()
-bestProduct = 0
-for i in range(len(num) - NUMADJDIGITS):
-	currProduct = 1
-	for j in range(NUMADJDIGITS):
-		currProduct *= num[i + j]
-	if currProduct > bestProduct:
-		bestProduct = currProduct
+if __name__ == "__main__":
+	num = readData()
+	bestProduct = 0
+	for i in range(len(num) - NUMADJDIGITS):
+		currProduct = 1
+		for j in range(NUMADJDIGITS):
+			currProduct *= num[i + j]
+		if currProduct > bestProduct:
+			bestProduct = currProduct
 
-print bestProduct
+	print bestProduct

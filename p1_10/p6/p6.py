@@ -16,5 +16,6 @@ def calcSquareOfSums(nums):
 def calcSumOfSquares(nums):
 	return sum(nums)**2
 
-nums = range(NUM + 1) # NUM is inclusive
-print calcSumOfSquares(nums) - calcSquareOfSums(nums)
+if __name__ == "__main__":
+	nums = range(NUM + 1) # NUM is inclusive
+	print calcSumOfSquares(nums) - calcSquareOfSums(nums)

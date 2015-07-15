@@ -18,14 +18,15 @@ def generateABC(r, s):
 	c = (s * s + r * r)/2
 	return (a, b, c)
 
-a = 0
-b = 0
-c = 0
-s = 1
-while a + b + c != SUM:
-	s += JUMP
-	for r in range(1, s, JUMP):
-		a, b, c = generateABC(r, s)
-		if a + b + c == SUM:
-			break
-print a * b * c
+if __name__ == "__main__":
+	a = 0
+	b = 0
+	c = 0
+	s = 1
+	while a + b + c != SUM:
+		s += JUMP
+		for r in range(1, s, JUMP):
+			a, b, c = generateABC(r, s)
+			if a + b + c == SUM:
+				break
+	print a * b * c

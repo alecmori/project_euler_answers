@@ -24,20 +24,21 @@ def removePrimes(prime, number):
 
 currNumber = INITIALNUMBER
 
-#Because all primes are odd besides 2, it's best to treat 2 as a special case
-#And instead increment by 2.	
-possPrime = 2
-biggestPrime = -1
-if currNumber % possPrime == 0:
-	currNumber = removePrimes(possPrime, currNumber)
-	biggestPrime = possPrime
-
-
-possPrime = 3
-while currNumber != 1:
-	#If prime is in currNumber, new largest prime factor!
-	if isPrime(possPrime) and currNumber % possPrime == 0:
+if __name__ == "__main__":
+	#Because all primes are odd besides 2, it's best to treat 2 as a special case
+	#And instead increment by 2.	
+	possPrime = 2
+	biggestPrime = -1
+	if currNumber % possPrime == 0:
 		currNumber = removePrimes(possPrime, currNumber)
 		biggestPrime = possPrime
-	possPrime += 2
-print biggestPrime
+
+
+	possPrime = 3
+	while currNumber != 1:
+		#If prime is in currNumber, new largest prime factor!
+		if isPrime(possPrime) and currNumber % possPrime == 0:
+			currNumber = removePrimes(possPrime, currNumber)
+			biggestPrime = possPrime
+		possPrime += 2
+	print biggestPrime

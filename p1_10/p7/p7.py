@@ -17,8 +17,9 @@ def checkPrime(n):
 			return 
 	PRIMES.append(n)
 
-possPrime = 3
-while len(PRIMES) != 10001:
-	checkPrime(possPrime)
-	possPrime += 2
-print PRIMES[-1]
+if __name__ == "__main__":
+	possPrime = 3
+	while len(PRIMES) != 10001:
+		checkPrime(possPrime)
+		possPrime += 2
+	print PRIMES[-1]

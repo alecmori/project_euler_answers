@@ -17,14 +17,15 @@ MAX = 4000000
 def fibClosedForm(n):
 	return int((math.pow(PHI, n) - math.pow(-PHI, -n))/math.sqrt(5))
 
-total = 0
-i = 0
-while fibClosedForm(i) <= MAX:
-	if fibClosedForm(i) % 2 == 0:
-		total += fibClosedForm(i)
-	i += 1
+if __name__ == "__main__":
+	total = 0
+	i = 0
+	while fibClosedForm(i) <= MAX:
+		if fibClosedForm(i) % 2 == 0:
+			total += fibClosedForm(i)
+		i += 1
 
-print total
+	print total
 
 """
 MAX = 4000000

@@ -78,14 +78,15 @@ def combineDict(d1, d2):
 def findTriangleNum(n):
 	return (n * (n + 1))/2
 
-nTriangleNum = 1
-primeFactors = findPrimeFactorization(nTriangleNum)
-primeFactors2 = findPrimeFactorization(nTriangleNum + 1)
-d = combineDict(primeFactors, primeFactors2)
-while countAllFactors(d) <= NUMDIVISORS:
-	nTriangleNum += 1
-	primeFactors = primeFactors2
+if __name__ == "__main__":
+	nTriangleNum = 1
+	primeFactors = findPrimeFactorization(nTriangleNum)
 	primeFactors2 = findPrimeFactorization(nTriangleNum + 1)
 	d = combineDict(primeFactors, primeFactors2)
+	while countAllFactors(d) <= NUMDIVISORS:
+		nTriangleNum += 1
+		primeFactors = primeFactors2
+		primeFactors2 = findPrimeFactorization(nTriangleNum + 1)
+		d = combineDict(primeFactors, primeFactors2)
 
-print findTriangleNum(nTriangleNum)
+	print findTriangleNum(nTriangleNum)

@@ -56,18 +56,19 @@ def mergeDictionaries(primeFactorization, currFactors):
 		if factor not in primeFactorization or primeFactorization[factor] < currFactors[factor]:
 			primeFactorization[factor] = currFactors[factor]
 
-#Finds all prime factorizations of the numbers 1-20, then sees if there are more instances
-#of prime p in the current number than any before it. Keep track of the largest for
-#each prime.
-primeFactorization = dict()
-for num in range(1, MAXNUM):
-	currFactors = findPrimeFactorization(num)
+if __name__ == "__main__":
+	#Finds all prime factorizations of the numbers 1-20, then sees if there are more instances
+	#of prime p in the current number than any before it. Keep track of the largest for
+	#each prime.
+	primeFactorization = dict()
+	for num in range(1, MAXNUM):
+		currFactors = findPrimeFactorization(num)
 
-	#Merges the overall tracking of prime numbers versus the current prime factors
-	mergeDictionaries(primeFactorization, currFactors)
+		#Merges the overall tracking of prime numbers versus the current prime factors
+		mergeDictionaries(primeFactorization, currFactors)
 
-#Multiplies them all together
-total = 1
-for factor,occurs in primeFactorization.items():
-	total *= factor**occurs
+	#Multiplies them all together
+	total = 1
+	for factor,occurs in primeFactorization.items():
+		total *= factor**occurs
 print total

@@ -23,11 +23,12 @@ def collatz(n):
 		collatzDict[n] = collatz(3 * n + 1) + 1
 	return collatzDict[n]
 
-best = -1
-longestNum = -1
-for i in range(totalNumbers):
-	possBest = collatz(i)
-	if possBest > best:
-		best = possBest
-		longestNum = i
-print longestNum
+if __name__ == "__main__":
+	best = -1
+	longestNum = -1
+	for i in range(totalNumbers):
+		possBest = collatz(i)
+		if possBest > best:
+			best = possBest
+			longestNum = i
+	print longestNum
