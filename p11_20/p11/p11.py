@@ -2,6 +2,12 @@
 #the cleanest code. This is how I implemented movement for a chess game for a class in
 #school, and I figured out it transferred relaively well.
 
+"""
+real	0m0.052s
+user	0m0.027s
+sys		0m0.012s
+"""
+
 FILENAME = "data.txt"
 NUMADJDIGITS = 4
 
