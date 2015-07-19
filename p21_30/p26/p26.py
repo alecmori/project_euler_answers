@@ -49,6 +49,8 @@ def countRepeatedDigits(num):
 	nextN = numerator * 10 % num
 	seenNs = [nextN]
 	nextN = nextN * 10 % num
+	if nextN == seenNs[0]:
+		return 0
 	while nextN != seenNs[0]:
 		seenNs.append(nextN)
 		nextN = nextN * 10 % num
