@@ -1,7 +1,7 @@
 #Interesting problem! Theoretically it's relatively simple - find all the primes you need,
 #then multiply them all together (for instance, you'll need 4 2's, because 2^4 = 16).
 
-#There might be a more effective method using gcd, but that's a bit to clever for me to
+#There might be a more effective method using gcd, but that's a bit too clever for me to
 #think of right now.
 
 """
@@ -10,9 +10,11 @@ user	0m0.026s
 sys		0m0.015s
 """
 
-MAXNUM = 20
+MAX_NUM = 20
 
-def isPrime(n):
+#Checks if a given number is prime - could use memoization but not worth it on such a small
+#problem.
+def is_prime(n):
 	i = 2
 	while i * i <= n:
 		if n % i == 0:
@@ -21,7 +23,7 @@ def isPrime(n):
 	return True
 
 #Counts number of times a prime occurs in a number
-def countPrimes(prime, number):
+def count_primes(prime, number):
 	counter = 0
 	while number % prime == 0:
 		number = number / prime
@@ -29,46 +31,49 @@ def countPrimes(prime, number):
 	return counter
 
 #If a prime is a factor of num, add it to the dictionary for each time it is a factor
-def addToDictionary(num, dictionary, prime):
+def add_to_dictionary(num, dictionary, prime):
 	if num % prime == 0:
 		#Number of time a prime occurs
-		numPrime = countPrimes(prime, num)
-		num /= prime**numPrime
-		dictionary[prime] = numPrime
+		num_primes = count_primes(prime, num)
+		num /= prime**num_primes
+		dictionary[prime] = num_primes
 	return num
 
-def findPrimeFactorization(num):
-	primeFactorization = dict()
+def find_prime_factorization(num):
+	prime_factorization = dict()
 
 	#2 is a special case for primes, being the only even one
-	possPrime = 2
-	num = addToDictionary(num, primeFactorization, possPrime)
+	poss_prime = 2
+	num = add_to_dictionary(num, prime_factorization, poss_prime)
 
-	possPrime = 3
+	poss_prime = 3
 	while num != 1:
-		if isPrime(possPrime):
-			num = addToDictionary(num, primeFactorization, possPrime)
-		possPrime += 1
-	return primeFactorization
+		if is_prime(poss_prime):
+			num = add_to_dictionary(num, prime_factorization, poss_prime)
 
-def mergeDictionaries(primeFactorization, currFactors):
-	for factor in currFactors:
-		if factor not in primeFactorization or primeFactorization[factor] < currFactors[factor]:
-			primeFactorization[factor] = currFactors[factor]
+		#Increment primes by two to ensure it is odd
+		poss_prime += 2
+	return prime_factorization
+
+#Takes all elements from a new dictionary and adds it to our cummulative dictionary
+def merge_dictionaries(prime_factorization, curr_factors):
+	for factor in curr_factors:
+		if factor not in prime_factorization or prime_factorization[factor] < curr_factors[factor]:
+			prime_factorization[factor] = curr_factors[factor]
 
 if __name__ == "__main__":
 	#Finds all prime factorizations of the numbers 1-20, then sees if there are more instances
 	#of prime p in the current number than any before it. Keep track of the largest for
 	#each prime.
-	primeFactorization = dict()
-	for num in range(1, MAXNUM):
-		currFactors = findPrimeFactorization(num)
+	prime_factorization = dict()
+	for num in xrange(1, MAX_NUM):
+		curr_factors = find_prime_factorization(num)
 
 		#Merges the overall tracking of prime numbers versus the current prime factors
-		mergeDictionaries(primeFactorization, currFactors)
+		merge_dictionaries(prime_factorization, curr_factors)
 
 	#Multiplies them all together
 	total = 1
-	for factor,occurs in primeFactorization.items():
-		total *= factor**occurs
+	for factor,occurances in prime_factorization.items():
+		total *= factor**occurancess
 print total

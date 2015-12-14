@@ -11,12 +11,12 @@ user	0m0.031s
 sys		0m0.014s
 """
 
-FILENAME = "data.txt"
-NUMADJDIGITS = 13
+FILE_NAME = "data.txt"
+NUM_ADJ_DIGITS = 13
 
 #Read in our giant number as a list of integers
-def readData():
-	fh = open(FILENAME, 'r')
+def read_data():
+	fh = open(FILE_NAME, 'r')
 	num = ""
 	for row in fh:
 		row = row.strip()
@@ -24,13 +24,15 @@ def readData():
 	return map(int,list(num))
 
 if __name__ == "__main__":
-	num = readData()
-	bestProduct = 0
-	for i in range(len(num) - NUMADJDIGITS):
-		currProduct = 1
-		for j in range(NUMADJDIGITS):
-			currProduct *= num[i + j]
-		if currProduct > bestProduct:
-			bestProduct = currProduct
+	num = read_data()
+	best_product = 0
 
-	print bestProduct
+	for i in xrange(len(num) - NUM_ADJ_DIGITS):
+		curr_product = 1
+
+		for j in xrange(NUM_ADJ_DIGITS):
+			curr_product *= num[i + j]
+		if curr_product > best_product:
+			best_product = curr_product
+
+	print best_product

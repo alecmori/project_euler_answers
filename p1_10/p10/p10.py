@@ -10,12 +10,12 @@ user	0m6.528s
 sys		0m0.073s
 """
 
-STARTPRIME = 3 #We count 2 already, so we start at 3
-UPPERBOUND = 2000000 
+START_PRIME = 3 #We count 2 already, so we start at 3
+UPPER_BOUND = 2000000 
 JUMP = 2 #We offset by two each time, so we only check odds
 PRIMES = [2]
 
-def checkPrime(n):
+def check_prime(n):
 	for prime in PRIMES:
 		if prime * prime > n:
 			break
@@ -25,7 +25,7 @@ def checkPrime(n):
 	return True
 
 if __name__ == "__main__":
-	for possPrime in range(STARTPRIME, UPPERBOUND, JUMP):
-		checkPrime(possPrime)
+	for poss_prime in xrange(START_PRIME, UPPER_BOUND, JUMP):
+		check_prime(poss_prime)
 
 	print sum(PRIMES)

@@ -9,7 +9,7 @@ sys		0m0.002s
 
 PRIMES = [2]
 
-def checkPrime(n):
+def check_prime(n):
 	for prime in PRIMES:
 		if prime * prime > n:
 			break
@@ -18,8 +18,8 @@ def checkPrime(n):
 	PRIMES.append(n)
 
 if __name__ == "__main__":
-	possPrime = 3
+	poss_prime = 3
 	while len(PRIMES) != 10001:
-		checkPrime(possPrime)
-		possPrime += 2
+		check_prime(poss_prime)
+		poss_prime += 2
 	print PRIMES[-1]
