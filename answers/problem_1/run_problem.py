@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def run_problem(n=1000, multiple_set={3, 5}):
     return sum(
         num
@@ -8,5 +9,6 @@ def run_problem(n=1000, multiple_set={3, 5}):
         )
     )
 
+
 if __name__ == '__main__':
-    print(run_problem(n=1000, multiple_set={3,5}))
+    print(run_problem(n=1000, multiple_set={3, 5}))
