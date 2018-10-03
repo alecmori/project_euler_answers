@@ -18,4 +18,8 @@ def _fibonacci_iterator(max_value):
 
 
 if __name__ == '__main__':
-    print(run_problem(max_value=4000000))
+    answer = run_problem(max_value=100)
+    if answer == 44:
+        print('Correct!')
+    else:
+        print('Incorrect!')

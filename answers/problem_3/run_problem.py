@@ -4,4 +4,8 @@ def run_problem(num):
 
 
 if __name__ == '__main__':
-    run_problem(num=600851475143)
+    answer = run_problem(num=13195)
+    if answer == 29:
+        print('Correct!')
+    else:
+        print('Incorrect!')
