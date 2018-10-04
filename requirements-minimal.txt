@@ -1,1 +1,2 @@
+argparse
 pre-commit>=1.0.0
