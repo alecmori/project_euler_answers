@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
+import argparse
 import importlib
 import os
 import timeit
 
 ANSWER_DIRECTORY = 'answers'
+NUM_TRIALS = 10
+# TODO: Hack this better
+PROBLEM_UPPER_BOUND = 1000000
 RUN_PROBLEM = 'run_problem'
 
-# TODO: Allow for subset of problems to be run
-# TODO: Allow for problems to be timed
 # TODO: Break this up into own modules
 
 
 def run_all_problems():
-    # TODO: use argnames
+    args = _get_args()
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     for problem_directory in sorted(
         os.listdir(
@@ -34,6 +36,11 @@ def run_all_problems():
             ),
         ):
             continue
+        problem_number = _get_problem_number(
+            possible_problem_directory=problem_directory,
+        )
+        if problem_number < args.min or problem_number > args.max:
+            continue
         module_to_run = '{answer_dir}.{problem_dir}.{run_problem}'.format(
             answer_dir=ANSWER_DIRECTORY,
             problem_dir=problem_directory,
@@ -47,11 +54,30 @@ def run_all_problems():
                         possible_problem_directory=problem_directory,
                     ),
                     answer=problem(),
-                    sec=timeit.timeit(problem, number=100),
+                    sec=timeit.timeit(problem, number=NUM_TRIALS) / NUM_TRIALS,
                 ),
             )
         except Exception as e:
             print('Error Running Problem: {error}'.format(error=e))
+
+
+def _get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-i',
+        '--min',
+        help='The smallest problem number you want to run',
+        type=int,
+        default=1,
+    )
+    parser.add_argument(
+        '-a',
+        '--max',
+        help='The largest problem number you want to run',
+        type=int,
+        default=PROBLEM_UPPER_BOUND,
+    )
+    return parser.parse_args()
 
 
 def _get_problem_number(possible_problem_directory):

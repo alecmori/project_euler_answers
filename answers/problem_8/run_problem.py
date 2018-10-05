@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from utils.proj_eul_math import lexical
 
 GIANT_NUMBER = """
                73167176531330624919225119674426574742355349194934
@@ -23,11 +24,21 @@ GIANT_NUMBER = """
                71636269561882670428252483600823257530420752963450
 """
 
-# TODO: double ended queue, keep track of zeros?
 
-
-def run_problem(num_digits=13):
-    pass
+def run_problem(num_digits=13, giant_num_str=GIANT_NUMBER):
+    giant_number = lexical.remove_whitespace(number_str=giant_num_str)
+    digit_queue = lexical.ProductQueue()
+    max_product = -1
+    for digit in giant_number:
+        digit_queue.add_node(n=int(digit))
+        if len(digit_queue) > num_digits:
+            digit_queue.remove_node()
+        if len(digit_queue) == num_digits:
+            max_product = max(
+                max_product,
+                digit_queue.get_product(),
+            )
+    return max_product
 
 
 if __name__ == '__main__':

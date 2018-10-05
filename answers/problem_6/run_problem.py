@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 def run_problem(max_value=100):
-    pass
+    return (
+        sum(range(max_value + 1))**2 -
+        sum(x**2 for x in range(max_value + 1))
+    )
 
 
 if __name__ == '__main__':

@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+from utils.proj_eul_math import prime
+
+
 def run_problem(num_prime=10001):
-    pass
+    for i, p in enumerate(prime.get_primes()):
+        if i + 1 >= num_prime:
+            return p
 
 
 if __name__ == '__main__':
