@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from utils.math import prime
+from utils.proj_eul_math import prime
 
 
 def run_problem(num=600851475143):
