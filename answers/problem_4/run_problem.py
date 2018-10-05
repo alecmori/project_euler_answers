@@ -1,6 +1,22 @@
 # -*- coding: utf-8 -*-
+import math
+
+
 def run_problem(max_value=1000):
-    pass
+    for v_1, v_2 in _iterate_by_max_product(max_value_inclusive=max_value - 1):
+        possible_palindrome = v_1 * v_2
+        if _is_palindromic(s=str(possible_palindrome)):
+            return possible_palindrome
+
+
+def _iterate_by_max_product(max_value_inclusive):
+    for combination_sum in range(max_value_inclusive * 2, 0, -1):
+        first_value = math.ceil(combination_sum / 2)
+        second_value = math.floor(combination_sum / 2)
+        while first_value <= max_value_inclusive and second_value >= 0:
+            yield first_value, second_value
+            first_value += 1
+            second_value -= 1
 
 
 def _is_palindromic(s: str):

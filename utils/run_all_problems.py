@@ -21,10 +21,8 @@ def run_all_problems():
                 ANSWER_DIRECTORY,
             ),
         ),
-        # Sort by
         key=_get_problem_number,
     ):
-        # TODO: Determine logic here
         if not os.path.isfile(
             os.path.join(
                 base_dir,
@@ -52,8 +50,8 @@ def run_all_problems():
                     sec=timeit.timeit(problem, number=100),
                 ),
             )
-        except BaseException:
-            print('Uh oh')
+        except Exception as e:
+            print('Error Running Problem: {error}'.format(error=e))
 
 
 def _get_problem_number(possible_problem_directory):
