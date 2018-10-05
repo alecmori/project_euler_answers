@@ -45,9 +45,15 @@ def _get_args():
 
 
 def _get_problem_number():
-    pass
-
-# TODO add arguments
+    problem_directory = os.path.join(BASE_DIR, PROBLEM_DIR_BASE)
+    return max(
+        int(name.split('_')[1])
+        for name in os.listdir(problem_directory)
+        if (
+            name.startswith('problem')
+            and os.path.isdir(os.path.join(problem_directory, name))
+        )
+    ) + 1
 
 
 def _make_new_problem_directory(problem_number):
@@ -58,6 +64,7 @@ def _make_new_problem_directory(problem_number):
     )
     if os.path.exists(new_directory):
         return
+    print('Making {dir}'.format(dir=new_directory))
     os.makedirs(new_directory)
     with open(os.path.join(new_directory, INIT_PATH), 'w'):
         pass
