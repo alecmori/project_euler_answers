@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
+from utils.proj_eul_math import prime
+
+
 def run_problem(max_value=2000000):
-    pass
+    return sum(
+        p
+        for p in prime.get_primes(max_num_exclusive=max_value)
+    )
 
 
 if __name__ == '__main__':

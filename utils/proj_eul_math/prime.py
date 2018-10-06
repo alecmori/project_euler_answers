@@ -1,17 +1,64 @@
 # -*- coding: utf-8 -*-
+DEFAULT_SIEVE_OF_ATKIN = 10000000
+MOD = 60
+FIRST_WHEEL = {1, 13, 17, 29, 37, 41, 49, 53}
+SECOND_WHEEL = {7, 19, 31, 43}
+THIRD_WHEEL = {11, 23, 47, 59}
+WHEEL = FIRST_WHEEL.intersection(SECOND_WHEEL.intersection(THIRD_WHEEL))
+
+# TODO: Change exclusive to inclusive
+
+
 def get_primes(max_num_exclusive=None):
-    if not max_num_exclusive:
-        max_num_exclusive = float('inf')
-    primes_seen_so_far = [2]
-    yield 2
-    num = 3
-    while num < max_num_exclusive:
-        if not any(num % prime == 0 for prime in primes_seen_so_far):
-            primes_seen_so_far.append(num)
+    if max_num_exclusive:
+        for num in _sieve_of_atkin(
+            limit=max_num_exclusive - 1,
+            minimum=0,
+        ):
             yield num
-        # Skip all even numbers
-        # TODO: Make smarter still
-        num += 2
+    else:
+        raise NotImplementedError
+
+
+# TODO: test the shit out of this function
+# TODO: Make poss_prime persist between calls somehow
+def _sieve_of_atkin(limit: int, minimum: int):
+    """
+    See formula from wikipedia
+    https://en.wikipedia.org/wiki/Sieve_of_Atkin
+    """
+    poss_prime = [
+        False
+        for _ in range(limit + 1)
+    ]
+    # NOTE(alecmori): Hardcoded in
+    poss_prime[2] = True
+    poss_prime[3] = True
+    x = 1
+    # TODO(alecmori): Explain this in rationale
+    while x * x < limit:
+        y = 1
+        while y * y < limit:
+            n = (4 * x * x) + (y * y)
+            if n <= limit and (n % 12 == 1 or n % 12 == 5):
+                poss_prime[n] ^= True
+            n = (3 * x * x) + (y * y)
+            if n <= limit and n % 12 == 7:
+                poss_prime[n] ^= True
+            n = (3 * x * x) - (y * y)
+            if x > y and n <= limit and n % 12 == 11:
+                poss_prime[n] ^= True
+            y += 1
+        x += 1
+    r = 5
+    while(r * r < limit):
+        if (poss_prime[r]):
+            for i in range(r * r, limit, r * r):
+                poss_prime[i] = False
+        r += 1
+    for num in range(minimum, len(poss_prime)):
+        if poss_prime[num]:
+            yield num
 
 
 def get_prime_factorization(num: int):
