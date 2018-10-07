@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-DEFAULT_SIEVE_OF_ATKIN = 10000000
+DEFAULT_SIEVE_OF_ATKIN = 100000
 MOD = 60
 FIRST_WHEEL = {1, 13, 17, 29, 37, 41, 49, 53}
 SECOND_WHEEL = {7, 19, 31, 43}
@@ -17,7 +17,14 @@ def get_primes(max_num_exclusive=None):
         ):
             yield num
     else:
-        raise NotImplementedError
+        i = 1
+        while True:
+            # TODO: Make limit smarter
+            for prime in _sieve_of_atkin(
+                limit=DEFAULT_SIEVE_OF_ATKIN * i,
+                minimum=DEFAULT_SIEVE_OF_ATKIN * (i - 1),
+            ):
+                yield prime
 
 
 # TODO: test the shit out of this function

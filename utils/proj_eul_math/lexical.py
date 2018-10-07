@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
 
+import numpy
+
 # TODO: Extend queue class?
 
 
@@ -67,6 +69,16 @@ class ProductQueue(object):
         else:
             self.head = popped_node.next
         return popped_node.n
+
+
+def parse_grid(grid):
+    return numpy.array(
+        [
+            [int(x) for x in row.strip().split(' ')]
+            for row in grid.split('\n')
+            if row.strip()
+        ],
+    )
 
 
 def remove_whitespace(number_str):

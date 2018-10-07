@@ -54,6 +54,7 @@ def run_all_problems():
                         possible_problem_directory=problem_directory,
                     ),
                     answer=problem(),
+                    # TODO: Pretty print
                     sec=timeit.timeit(problem, number=NUM_TRIALS) / NUM_TRIALS,
                 ),
             )

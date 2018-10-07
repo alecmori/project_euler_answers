@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import numpy
+
+from utils.proj_eul_math import lexical
 
 GRID = """
           08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -25,12 +28,75 @@ GRID = """
 
 
 def run_problem(num_digits=4):
-    pass
+    parsed_grid = lexical.parse_grid(grid=GRID)
+    return max(
+        _get_largest_down_right_diagonal(grid=parsed_grid, num=num_digits),
+        # NOTE: Equivalent to getting largest up-right-diagonal
+        _get_largest_down_right_diagonal(
+            grid=numpy.fliplr(m=parsed_grid),
+            num=num_digits,
+        ),
+        _get_largest_row(grid=parsed_grid, num=num_digits),
+        # NOTE: Equivalent to getting largest column
+        _get_largest_row(grid=parsed_grid.T, num=num_digits),
+    )
+
+
+def _get_largest_down_right_diagonal(grid, num: int):
+    max_product = -1
+    n, m = grid.shape
+    for starting_x in range(n - 4):
+        queue = lexical.ProductQueue()
+        x = starting_x
+        y = 0
+        while x < n and y < m:
+            queue.add_node(n=grid[x][y])
+            if len(queue) > num:
+                queue.remove_node()
+            if len(queue) == num:
+                max_product = max(
+                    max_product,
+                    queue.get_product(),
+                )
+            x += 1
+            y += 1
+    for starting_y in range(m - 4):
+        queue = lexical.ProductQueue()
+        x = 0
+        y = starting_y
+        while x < n and y < m:
+            queue.add_node(n=grid[x][y])
+            if len(queue) > num:
+                queue.remove_node()
+            if len(queue) == num:
+                max_product = max(
+                    max_product,
+                    queue.get_product(),
+                )
+            x += 1
+            y += 1
+    return max_product
+
+
+def _get_largest_row(grid, num: int):
+    max_product = -1
+    for row in grid:
+        queue = lexical.ProductQueue()
+        for element in row:
+            queue.add_node(n=element)
+            if len(queue) > num:
+                queue.remove_node()
+            if len(queue) == num:
+                max_product = max(
+                    max_product,
+                    queue.get_product(),
+                )
+    return max_product
 
 
 if __name__ == '__main__':
     answer = run_problem(num_digits=2)
-    if answer == 99 * 94:
+    if answer == 9306:
         print('Correct!')
     else:
         print('Incorrect!')

@@ -5,7 +5,9 @@ from utils.proj_eul_math import prime
 def run_problem(num=600851475143):
     max_prime = -1
     for p in prime.get_primes():
-        if num == 1:
+        if p == num:
+            return p
+        if num < p:
             break
         if num % p == 0:
             max_prime = p
