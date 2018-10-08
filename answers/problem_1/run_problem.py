@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# TODO: Rewrite combinatorically a + b - (a \and b)
+
+
 def run_problem(n=1000, multiple_set={3, 5}):
     return sum(
         num

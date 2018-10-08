@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
+from utils.proj_eul_math import general
+
+
 def run_problem(num_divisors=500):
-    pass
+    for triangle_number in general.generate_triangle_numbers():
+        print(triangle_number)
+        if general.get_num_divisors(num=triangle_number) > num_divisors:
+            return triangle_number
 
 
 if __name__ == '__main__':

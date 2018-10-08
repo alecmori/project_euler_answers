@@ -18,6 +18,7 @@ cement==2.8.2
 cfgv==1.1.0
 colorama==0.3.9
 coverage==4.5.1
+Cython==0.28.5
 Django==2.1.2
 django-cors-headers==2.4.0
 django-memoize==2.1.1
@@ -34,6 +35,7 @@ identify==1.1.6
 jmespath==0.9.3
 jsonschema==2.6.0
 kombu==3.0.37
+Markdown==3.0.1
 mock==2.0.0
 more-itertools==4.3.0
 nodeenv==1.3.2
@@ -45,6 +47,7 @@ pluggy==0.7.1
 pre-commit==1.11.1
 psycopg2-binary==2.7.5
 py==1.6.0
+Pygments==2.2.0
 PyStaticConfiguration==0.10.3
 pytest==3.8.2
 pytest-cov==2.6.0
@@ -55,6 +58,7 @@ python-dateutil==2.7.3
 pytz==2018.5
 pytzdata==2018.5
 PyYAML==3.13
+readme2tex==0.0.1b2
 requests==2.9.1
 s3transfer==0.1.13
 semantic-version==2.5.0

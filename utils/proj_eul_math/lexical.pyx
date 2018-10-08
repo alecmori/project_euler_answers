@@ -71,7 +71,7 @@ class ProductQueue(object):
         return popped_node.n
 
 
-def parse_grid(grid):
+def parse_grid(grid: str):
     return numpy.array(
         [
             [int(x) for x in row.strip().split(' ')]
@@ -81,5 +81,5 @@ def parse_grid(grid):
     )
 
 
-def remove_whitespace(number_str):
+cdef str remove_whitespace(number_str: str):
     return re.sub(r'\s+', '', number_str)
