@@ -7,7 +7,7 @@ INIT_PATH = '__init__.py'
 PROBLEM_DIR_BASE = 'answers'
 PROBLEM_DIR_TEMPLATE = 'problem_{num}'
 RATIONALE_PATH = 'rationale.md'
-RUN_PROBLEM_PATH = 'run_problem.py'
+RUN_PROBLEM_PATH = 'run_problem.pyx'
 RUN_PROBLEM_TEMPLATE_CODE = """
 # -*- coding: utf-8 -*-
 def run_problem():
