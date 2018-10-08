@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
+import math
 from utils.proj_eul_math import prime
 
 
 def run_problem(num=600851475143):
     max_prime = -1
-    for p in prime.get_primes():
-        if p == num:
-            return p
-        if num < p:
-            break
-        if num % p == 0:
-            max_prime = p
-            num = reduce_number(num=num, p=p)
-    return max_prime
+    if prime.is_prime(num=num):
+        return num
+    return max(prime.get_prime_factorization(num=num))
 
 
 def reduce_number(num, p):

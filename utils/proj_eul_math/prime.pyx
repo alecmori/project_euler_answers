@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import math
+
 DEFAULT_SIEVE_OF_ATKIN = 6
 DEFAULT_SIEVE_OF_ATKIN_BASE = 10
 MOD = 60
@@ -43,13 +45,11 @@ def _sieve_of_atkin(unsigned int limit, unsigned int minimum):
         False
         for _ in range(limit + 1)
     ]
-    # NOTE(alecmori): Hardcoded in
     poss_prime[2] = True
     poss_prime[3] = True
     cdef unsigned int x = 1
     cdef unsigned int y
     cdef unsigned int n
-    # TODO(alecmori): Explain this in rationale
     while x * x < limit:
         y = 1
         while y * y < limit:
@@ -74,9 +74,9 @@ def _sieve_of_atkin(unsigned int limit, unsigned int minimum):
         if poss_prime[num]:
             yield num
 
-cdef dict get_prime_factorization(unsigned int num):
+cdef dict get_prime_factorization(unsigned long long int num):
     cdef dict prime_dict = {}
-    for prime in get_primes(max_num_exclusive=num + 1):
+    for prime in get_primes(max_num_exclusive=int(math.sqrt(num)) + 1):
         if prime > num:
             return prime_dict
         if num % prime == 0:
@@ -86,7 +86,10 @@ cdef dict get_prime_factorization(unsigned int num):
             )
             prime_dict[prime] = num_times_prime_divides
             num = num / prime**num_times_prime_divides
-    return {}
+    # If we have gone through all primes and still have found no
+    #   divisors, then this number is prime and thus its own prime
+    #   factorization.
+    return {num: 1}
 
 
 cdef int _get_num_times_prime_divides(
@@ -97,3 +100,10 @@ cdef int _get_num_times_prime_divides(
         num /= prime
         n += 1
     return n
+
+
+cdef int is_prime(unsigned long long int num):
+    return any(
+        num % prime
+        for prime in get_primes(num=int(math.sqrt(num)) + 1)
+    )
