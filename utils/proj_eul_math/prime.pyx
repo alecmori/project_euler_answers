@@ -41,6 +41,10 @@ def _sieve_of_atkin(*, unsigned int limit, unsigned int minimum):
     See formula from wikipedia
     https://en.wikipedia.org/wiki/Sieve_of_Atkin
     """
+    if limit <= 4:
+        yield 2
+        yield 3
+        return
     poss_prime = [
         False
         for _ in range(limit + 1)
