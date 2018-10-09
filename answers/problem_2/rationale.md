@@ -1,9 +1,0 @@
-The canonical way to think about the fibonacci sequence is to say
-
-<p align="center"><img src="https://rawgit.com/alecmori/project_euler_answers (fetch/None/svgs/3a18293c272ddffc149f5517a9cfd161.svg?invert_in_darkmode" align=middle width=205.86554999999998pt height=16.376943pt/></p>
-<p align="center"><img src="https://rawgit.com/alecmori/project_euler_answers (fetch/None/svgs/01892a16feda73ecb56861a4b7412b76.svg?invert_in_darkmode" align=middle width=47.96417999999999pt height=13.656621pt/></p>
-<p align="center"><img src="https://rawgit.com/alecmori/project_euler_answers (fetch/None/svgs/b30a2f4878b6592c797fc8823857a338.svg?invert_in_darkmode" align=middle width=47.96417999999999pt height=13.656621pt/></p>
-
-However, running the function recursively would only cause more function than necessary - <img src="https://rawgit.com/alecmori/project_euler_answers (fetch/None/svgs/443303b171835ec871c1e857d8665088.svg?invert_in_darkmode" align=middle width=42.82278pt height=24.56552999999997pt/> without memoization, <img src="https://rawgit.com/alecmori/project_euler_answers (fetch/None/svgs/1f08ccc9cd7309ba1e756c3d9345ad9f.svg?invert_in_darkmode" align=middle width=35.51625pt height=24.56552999999997pt/> with (and that's with an <img src="https://rawgit.com/alecmori/project_euler_answers (fetch/None/svgs/1f08ccc9cd7309ba1e756c3d9345ad9f.svg?invert_in_darkmode" align=middle width=35.51625pt height=24.56552999999997pt/> space requirement as well). In order to get an <img src="https://rawgit.com/alecmori/project_euler_answers (fetch/None/svgs/1e2f931ee6c0b8e7a51a7b0d123d514f.svg?invert_in_darkmode" align=middle width=33.874829999999996pt height=24.56552999999997pt/> space fulfilled, I will opt to instead make a generator function and filter out only the values I need.
-
-This is not very cythonic, but I think adds to the readability by separating out the iterating logic from the computation logic.
