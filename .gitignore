@@ -3,3 +3,4 @@ forMe.txt
 *.pyc
 */__pycache__/*
 *.so
+*.sw*
