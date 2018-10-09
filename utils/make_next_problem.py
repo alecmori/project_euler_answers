@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INIT_PATH = '__init__.py'
 PROBLEM_DIR_BASE = 'answers'
 PROBLEM_DIR_TEMPLATE = 'problem_{num}'
-RATIONALE_PATH = 'rationale.md'
+RATIONALE_PATH = 'rationale_in_latex.md'
 RUN_PROBLEM_PATH = 'run_problem.pyx'
 RUN_PROBLEM_TEMPLATE_CODE = """
 # -*- coding: utf-8 -*-

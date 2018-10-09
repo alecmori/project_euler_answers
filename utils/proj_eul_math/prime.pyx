@@ -10,7 +10,7 @@ THIRD_WHEEL = {11, 23, 47, 59}
 WHEEL = FIRST_WHEEL.intersection(SECOND_WHEEL.intersection(THIRD_WHEEL))
 
 # TODO: Change exclusive to inclusive
-def get_primes(max_num_exclusive=None):
+def get_primes(*, max_num_exclusive=None):
     if max_num_exclusive and max_num_exclusive <= 2:
         return
     if max_num_exclusive:
@@ -36,7 +36,7 @@ def get_primes(max_num_exclusive=None):
 
 # TODO: test the shit out of this function
 # TODO: Make poss_prime persist between calls somehow
-def _sieve_of_atkin(unsigned int limit, unsigned int minimum):
+def _sieve_of_atkin(*, unsigned int limit, unsigned int minimum):
     """
     See formula from wikipedia
     https://en.wikipedia.org/wiki/Sieve_of_Atkin
@@ -74,7 +74,7 @@ def _sieve_of_atkin(unsigned int limit, unsigned int minimum):
         if poss_prime[num]:
             yield num
 
-cdef dict get_prime_factorization(unsigned long long int num):
+def get_prime_factorization(*, unsigned long long int num):
     cdef dict prime_dict = {}
     for prime in get_primes(max_num_exclusive=int(math.sqrt(num)) + 1):
         if prime > num:
@@ -93,7 +93,7 @@ cdef dict get_prime_factorization(unsigned long long int num):
 
 
 cdef int _get_num_times_prime_divides(
-    unsigned int num, unsigned int prime,
+    unsigned long long int num, unsigned long long int prime,
 ):
     cdef unsigned int n = 0
     while num % prime == 0:
@@ -105,5 +105,5 @@ cdef int _get_num_times_prime_divides(
 cdef int is_prime(unsigned long long int num):
     return any(
         num % prime
-        for prime in get_primes(num=int(math.sqrt(num)) + 1)
+        for prime in get_primes(max_num_exclusive=int(math.sqrt(num)) + 1)
     )

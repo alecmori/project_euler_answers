@@ -7,7 +7,7 @@ def run_problem(max_value=4000000):
     )
 
 
-def _fibonacci_iterator(max_value):
+def _fibonacci_iterator(*, max_value):
     n1 = 1
     n2 = 2
     while n1 < max_value:
