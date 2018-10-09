@@ -3,54 +3,45 @@ import math
 
 DEFAULT_SIEVE_OF_ATKIN = 6
 DEFAULT_SIEVE_OF_ATKIN_BASE = 10
-MOD = 60
-FIRST_WHEEL = {1, 13, 17, 29, 37, 41, 49, 53}
-SECOND_WHEEL = {7, 19, 31, 43}
-THIRD_WHEEL = {11, 23, 47, 59}
-WHEEL = FIRST_WHEEL.intersection(SECOND_WHEEL.intersection(THIRD_WHEEL))
 
-# TODO: Change exclusive to inclusive
-def get_primes(*, max_num_exclusive=None):
-    if max_num_exclusive and max_num_exclusive <= 2:
-        return
-    if max_num_exclusive:
-        for num in _sieve_of_atkin(
-            limit=max_num_exclusive - 1,
-            minimum=0,
-        ):
-            yield num
+def get_primes(*, max_num_inclusive=None):
+    if max_num_inclusive:
+        poss_primes = _sieve_of_atkin(limit=max_num_inclusive)
+        for num in range(len(poss_primes)):
+            if poss_primes[num]:
+                yield num
     else:
         i = DEFAULT_SIEVE_OF_ATKIN
         prev = 0
         while True:
-            # TODO: Make limit smarter
             limit = DEFAULT_SIEVE_OF_ATKIN_BASE ** i
-            for prime in _sieve_of_atkin(
-                limit=limit,
-                minimum=prev,
-            ):
-                yield prime
+            #TODO: Use minimum in sieve of atkin to speed things up
+            poss_primes = _sieve_of_atkin(limit=limit)
+            for num in range(prev, len(poss_primes)):
+                if poss_primes[num]:
+                    yield num
             prev = limit
             i += 1
 
 
 # TODO: test the shit out of this function
 # TODO: Make poss_prime persist between calls somehow
-def _sieve_of_atkin(*, unsigned int limit, unsigned int minimum):
+cpdef list _sieve_of_atkin(unsigned long long int limit):
     """
     See formula from wikipedia
     https://en.wikipedia.org/wiki/Sieve_of_Atkin
     """
-    if limit <= 4:
-        yield 2
-        yield 3
-        return
     poss_prime = [
         False
+        # Padding zero for simplicity
         for _ in range(limit + 1)
     ]
-    poss_prime[2] = True
-    poss_prime[3] = True
+    if limit >= 2:
+        poss_prime[2] = True
+    if limit >= 3:
+        poss_prime[3] = True
+    if limit <= 4:
+        return poss_prime
     cdef unsigned int x = 1
     cdef unsigned int y
     cdef unsigned int n
@@ -74,15 +65,13 @@ def _sieve_of_atkin(*, unsigned int limit, unsigned int minimum):
             for i in range(r * r, limit, r * r):
                 poss_prime[i] = False
         r += 1
-    for num in range(minimum, len(poss_prime)):
-        if poss_prime[num]:
-            yield num
+    return poss_prime
 
-def get_prime_factorization(*, unsigned long long int num):
+cpdef dict get_prime_factorization(unsigned long long int num):
+    if num <= 1:
+        raise ValueError
     cdef dict prime_dict = {}
-    for prime in get_primes(max_num_exclusive=int(math.sqrt(num)) + 1):
-        if prime > num:
-            return prime_dict
+    for prime in get_primes(max_num_inclusive=int(math.sqrt(num))):
         if num % prime == 0:
             num_times_prime_divides = _get_num_times_prime_divides(
                 num=num,
@@ -90,13 +79,15 @@ def get_prime_factorization(*, unsigned long long int num):
             )
             prime_dict[prime] = num_times_prime_divides
             num = num / prime**num_times_prime_divides
+        if prime > num:
+            return prime_dict
     # If we have gone through all primes and still have found no
     #   divisors, then this number is prime and thus its own prime
     #   factorization.
     return {num: 1}
 
 
-cdef int _get_num_times_prime_divides(
+cpdef int _get_num_times_prime_divides(
     unsigned long long int num, unsigned long long int prime,
 ):
     cdef unsigned int n = 0
@@ -106,8 +97,10 @@ cdef int _get_num_times_prime_divides(
     return n
 
 
-cdef int is_prime(unsigned long long int num):
-    return any(
-        num % prime
-        for prime in get_primes(max_num_exclusive=int(math.sqrt(num)) + 1)
-    )
+cpdef int is_prime(unsigned long long int num):
+    if num <= 1:
+        return False
+    for prime in get_primes(max_num_inclusive=int(math.sqrt(num))):
+        if num % prime == 0:
+            return False
+    return True

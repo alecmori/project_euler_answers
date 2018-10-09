@@ -51,6 +51,7 @@ Pygments==2.2.0
 PyStaticConfiguration==0.10.3
 pytest==3.8.2
 pytest-cov==2.6.0
+pytest-cython==0.1.0
 pytest-forked==0.2
 pytest-sugar==0.9.1
 pytest-xdist==1.23.2
