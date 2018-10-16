@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 def run_problem(power=1000):
-    pass
+    return sum(
+        int(x)
+        for x in str(2**power)
+    )
 
 
 if __name__ == '__main__':

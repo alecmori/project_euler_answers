@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+from utils.proj_eul_math import combinatorics
+
 def run_problem(n=100):
-    pass
+    return sum(
+        int(x)
+        for x in str(combinatorics.factorial(n))
+    )
 
 
 if __name__ == '__main__':

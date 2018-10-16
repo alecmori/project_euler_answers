@@ -25,7 +25,28 @@ BIG_TRIANGLE = """
 
 
 def run_problem(triangle=BIG_TRIANGLE):
-    pass
+    parsed_triangle = _parse_triangle(triangle)
+    curr_row_index = len(parsed_triangle) - 1
+    previously_summed_row = parsed_triangle[curr_row_index]
+    while curr_row_index > 0:
+        curr_row_index -= 1
+        curr_row = parsed_triangle[curr_row_index]
+        previously_summed_row = [
+            curr_row[i] + max(
+                previously_summed_row[i],
+                previously_summed_row[i + 1],
+            )
+            for i in range(len(curr_row))
+        ]
+    assert len(previously_summed_row) == 1
+    return previously_summed_row[0]
+
+
+def _parse_triangle(triangle):
+    return [
+        [int(x) for x in row.strip().split(' ')]
+        for row in triangle.strip().split('\n')
+    ]
 
 
 if __name__ == '__main__':

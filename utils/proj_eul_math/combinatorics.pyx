@@ -1,3 +1,10 @@
+cpdef factorial(unsigned int n):
+    i = 1
+    while n > 1:
+        i *= n
+        n -= 1
+    return i
+
 cpdef nCr(unsigned int n, unsigned int r):
     r = min(r, n-r)
     return int(nPr(n, r) / nPr(r, r))
