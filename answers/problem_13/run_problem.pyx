@@ -104,7 +104,12 @@ FIFTY_DIGIT_NUMBERS = """
 
 
 def run_problem(num_digits=10):
-    pass
+    return str(
+        sum(
+            int(x)
+            for x in FIFTY_DIGIT_NUMBERS.strip().split('\n')
+        ),
+    )[:num_digits]
 
 
 if __name__ == '__main__':

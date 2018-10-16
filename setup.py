@@ -14,6 +14,7 @@ def main():
         ext_modules=cythonize(
             # TODO: Use kwarg
             [
+                'utils/proj_eul_math/combinatorics.pyx',
                 'utils/proj_eul_math/general.pyx',
                 'utils/proj_eul_math/lexical.pyx',
                 'utils/proj_eul_math/prime.pyx',

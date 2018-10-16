@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from utils.proj_eul_math import combinatorics
+
 def run_problem(n=20):
-    pass
+    return combinatorics.nCr(2 * n, n)
 
 
 if __name__ == '__main__':

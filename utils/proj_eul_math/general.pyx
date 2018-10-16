@@ -9,6 +9,7 @@ def generate_triangle_numbers():
         n += 1
         yield int(n * (n + 1) / 2)
 
+
 def get_num_divisors(*, unsigned int num):
     return numpy.product(
         [
@@ -25,6 +26,7 @@ def greatest_common_denominator(*, unsigned int a, unsigned int b):
         a = b
         b = temp % b
     return a
+
 
 def least_common_multiple(*, unsigned int a, unsigned int b):
     return int(a * b / greatest_common_denominator(a=a, b=b))

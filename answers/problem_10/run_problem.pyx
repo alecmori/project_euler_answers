@@ -5,7 +5,7 @@ from utils.proj_eul_math import prime
 def run_problem(max_value=2000000):
     return sum(
         p
-        for p in prime.get_primes(max_num_exclusive=max_value)
+        for p in prime.get_primes(max_num_inclusive=max_value)
     )
 
 

@@ -3,8 +3,8 @@ from utils.proj_eul_math import prime
 
 def run_problem(num_divisors=500):
     cdef unsigned int n = 3
-    cdef dict prime_factorization_1 = prime.get_prime_factorization(num=2)
-    cdef dict prime_factorization_2 = prime.get_prime_factorization(num=3)
+    cdef dict prime_factorization_1 = prime.get_prime_factorization(2)
+    cdef dict prime_factorization_2 = prime.get_prime_factorization(3)
     cdef unsigned int curr_num_divisors = _get_curr_num_divisors(
         factorizations=[
             prime_factorization_1,
@@ -14,7 +14,7 @@ def run_problem(num_divisors=500):
     while curr_num_divisors < num_divisors:
         n += 1
         prime_factorization_1 = prime_factorization_2
-        prime_factorization_2 = prime.get_prime_factorization(num=n)
+        prime_factorization_2 = prime.get_prime_factorization(n)
         curr_num_divisors = _get_curr_num_divisors(
             factorizations=[
                 prime_factorization_1,
