@@ -2,16 +2,19 @@
 # TODO: Rewrite combinatorically a + b - (a \and b)
 
 
-def run_problem(n=1000, multiple_set={3, 5}):
-    return sum(
-        num
-        for num in range(n)
-        if any(
-            num % x == 0
-            for x in multiple_set
-        )
-    )
+cpdef run_problem(unsigned int n=1000, set multiple_set={3, 5}):
+    total = 0
+    for num in range(n):
+        if any_divides(num=num, multiple_set=multiple_set):
+            total += num
+    return total
 
+
+cdef any_divides(unsigned int num, set multiple_set):
+    return any(
+        num % x == 0
+        for x in multiple_set
+    )
 
 if __name__ == '__main__':
     answer = run_problem(n=10, multiple_set={3, 5})

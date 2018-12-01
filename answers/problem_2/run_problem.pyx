@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-def run_problem(max_value=4000000):
-    return sum(
-        num
-        for num in _fibonacci_iterator(max_value=max_value)
-        if num % 2 == 0
-    )
+cpdef run_problem(unsigned long long int max_value=4000000):
+    total = 0
+    for num in _fibonacci_iterator(max_value=max_value):
+        if num % 2 == 0:
+            total += num
+    return total
 
 
 def _fibonacci_iterator(*, max_value):

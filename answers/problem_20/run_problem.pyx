@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from utils.proj_eul_math import combinatorics
+from utils.proj_eul_math cimport combinatorics
 
-def run_problem(n=100):
-    return sum(
-        int(x)
-        for x in str(combinatorics.factorial(n))
-    )
+cpdef run_problem(unsigned int n=100):
+    total = 0
+    for x in str(combinatorics.factorial(n=n)):
+        total += int(x)
+    return total
 
 
 if __name__ == '__main__':
