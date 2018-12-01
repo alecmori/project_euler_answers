@@ -2,7 +2,7 @@
 from utils.proj_eul_math cimport combinatorics
 
 cpdef run_problem(unsigned int n=20):
-    return combinatorics.nCr(2 * n, n)
+    return combinatorics.nCr(n=2 * n, r=n)
 
 
 if __name__ == '__main__':
