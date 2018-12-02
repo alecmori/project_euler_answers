@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-def run_problem(power=1000):
-    return sum(
-        int(x)
-        for x in str(2**power)
-    )
+cpdef run_problem(power=1000):
+    total = 0
+    for x in str(2**power):
+        total += int(x)
+    return total
 
 
 if __name__ == '__main__':

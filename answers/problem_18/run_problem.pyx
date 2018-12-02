@@ -24,7 +24,7 @@ BIG_TRIANGLE = """
 """
 
 
-def run_problem(triangle=BIG_TRIANGLE):
+cpdef run_problem(str triangle=BIG_TRIANGLE):
     parsed_triangle = _parse_triangle(triangle)
     curr_row_index = len(parsed_triangle) - 1
     previously_summed_row = parsed_triangle[curr_row_index]

@@ -3,7 +3,7 @@ import functools
 
 CACHE_SIZE = int(1e8)
 
-def run_problem(max_value=1000000):
+cpdef run_problem(unsigned int max_value=1000000):
     cdef unsigned int max_integer = 0
     cdef unsigned int best_chain_len = 0
     cdef unsigned int curr_chain_len = 0

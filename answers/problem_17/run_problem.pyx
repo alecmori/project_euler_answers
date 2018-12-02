@@ -1,86 +1,98 @@
 # -*- coding: utf-8 -*-
 
 ONE_THROUGH_NINETEEN = [
-    # one
-    3,
-    # two
-    3,
-    # three
-    5,
-    # four
-    4,
-    # five
-    4,
-    # six
-    3,
-    # seven
-    5,
-    # eight
-    5,
-    # nine
-    4,
-    # ten
-    3,
-    # eleven
-    6,
-    # twelve
-    6,
-    # thirteen
-    8,
-    # fourteen
-    8,
-    # fifteen
-    7,
-    # sixteen
-    7,
-    # seventeen
-    9,
-    # eighteen
-    8,
-    # nineteen
-    8,
+    NotImplementedError,
+    len('one'),
+    len('two'),
+    len('three'),
+    len('four'),
+    len('five'),
+    len('six'),
+    len('seven'),
+    len('eight'),
+    len('nine'),
+    len('ten'),
+    len('eleven'),
+    len('twelve'),
+    len('thirteen'),
+    len('fourteen'),
+    len('fifteen'),
+    len('sixteen'),
+    len('seventeen'),
+    len('eighteen'),
+    len('nineteen'),
 ]
 
-TWENTY_TO_NINETY = [
-    # twenty
-    6,
-    # thirty
-    6,
-    # forty
-    5,
-    # fifty
-    5,
-    # sixty
-    5,
-    # seventy
-    7,
-    # eighty
-    6,
-    # ninety,
-    6,
+TWENTY_THROUGH_NINETY = [
+    NotImplementedError,
+    NotImplementedError,
+    len('twenty'),
+    len('thirty'),
+    len('forty'),
+    len('fifty'),
+    len('sixty'),
+    len('seventy'),
+    len('eighty'),
+    len('ninety'),
 ]
 
-# HUNDRED
-HUNDRED = 7
+HUNDRED = len('hundred')
+THOUSAND = len('thousand')
 
-def run_problem(max_value=1000):
+cpdef unsigned int run_problem(unsigned int max_value=1000):
     total_count = 0
     for number in range(1, max_value + 1):
         tens_and_one_count = _get_tens_and_one_count(
             number=number,
         )
-        hundreds_count = _get_hundreds_count(
+        total_count += _get_hundreds_count(
             number=number,
             tens_and_one_count=tens_and_one_count,
+        ) + tens_and_one_count + _get_thousand_count(
+            number=number,
         )
     return total_count
 
 
-def _get_tens_and_one_count(number: int) -> int:
-    return 1
+cdef unsigned int _get_tens_and_one_count(unsigned int number):
+    last_two_digits = number % 100
+    if last_two_digits == 0:
+        return 0
+    elif last_two_digits < 20:
+        return ONE_THROUGH_NINETEEN[last_two_digits]
+    else:
+        last_digit = last_two_digits % 10
+        first_digit = int(last_two_digits/10)
+        if last_digit != 0:
+            return (
+                ONE_THROUGH_NINETEEN[last_digit] +
+                TWENTY_THROUGH_NINETY[first_digit]
+            )
+        else:
+            return TWENTY_THROUGH_NINETY[first_digit]
 
-def _get_hundreds_count(number:int, tens_and_one_count: int) -> int:
-    return 1
+cdef unsigned int _get_hundreds_count(
+    unsigned int number,
+    unsigned int tens_and_one_count,
+):
+    hundreds_digit = int(number/100) % 10
+    if not hundreds_digit:
+        return 0
+    elif not tens_and_one_count:
+        return HUNDRED + ONE_THROUGH_NINETEEN[hundreds_digit]
+    else:
+        return (
+            HUNDRED +
+            ONE_THROUGH_NINETEEN[hundreds_digit] +
+            len('and')
+        )
+
+cdef unsigned int _get_thousand_count(unsigned int number):
+    thousand_digit = int(number / 1000)
+    if not thousand_digit:
+        return 0
+    else:
+        return THOUSAND + ONE_THROUGH_NINETEEN[thousand_digit]
 
 
 if __name__ == '__main__':
