@@ -3,7 +3,7 @@ import math
 from utils.proj_eul_math import prime
 
 
-def run_problem(unsigned long long int num=600851475143):
+cpdef run_problem(unsigned long long int num=600851475143):
     return max(prime.get_prime_factorization(num))
 
 

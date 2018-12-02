@@ -2,6 +2,7 @@
 import os
 from distutils import core
 
+import numpy
 from Cython.Build import cythonize
 
 # TODO: Combine code from here with code from `utils/run_all_problems
@@ -22,7 +23,9 @@ def main():
                 answer_dir=ANSWER_DIRECTORY,
                 module_name=RUN_PROBLEM,
             ),
+            include_path=[numpy.get_include()],
         ),
+        include_dirs=[numpy.get_include()],
     )
 
 

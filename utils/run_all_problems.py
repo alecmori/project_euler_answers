@@ -3,6 +3,7 @@ import argparse
 import importlib
 import os
 import timeit
+import traceback
 
 ANSWER_DIRECTORY = 'answers'
 NUM_TRIALS = 10
@@ -60,6 +61,7 @@ def run_all_problems():
             )
         except Exception as e:
             print('Error Running Problem: {error}'.format(error=e))
+            traceback.print_exc()
 
 
 def _get_args():

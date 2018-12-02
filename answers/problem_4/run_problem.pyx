@@ -3,7 +3,7 @@ import math
 import queue
 
 
-def run_problem(max_value=1000):
+cpdef run_problem(unsigned int max_value=1000):
     for product in _iterate_by_max_product(max_value_inclusive=max_value - 1):
         if _is_palindromic(s=str(product)):
             return product

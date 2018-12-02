@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-def run_problem(summed_value=1000):
+cpdef run_problem(unsigned int summed_value=1000):
     for triple in _generate_base_pythagorean_triples():
         if summed_value % sum(triple.values()) == 0:
             constant_factor = int(summed_value) / sum(triple.values())

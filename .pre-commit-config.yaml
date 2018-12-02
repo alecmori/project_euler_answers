@@ -34,7 +34,6 @@ repos:
   - id: autopep8
     args:
     - --aggressive
-    - --all-files
     - --in-place
 - repo: https://github.com/asottile/pyupgrade
   rev: v1.8.0

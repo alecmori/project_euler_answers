@@ -6,12 +6,13 @@ import numpy
 # TODO: Extend queue class?
 
 
-class ProductQueue(object):
+cdef class ProductQueueNode(object):
 
-    class ProductQueueNode(object):
-        def __init__(self, n: int):
-            self.n = n
-            self.next = None
+    def __init__(self, unsigned int n):
+        self.n = n
+        self.next = None
+
+cdef class ProductQueue(object):
 
     # TODO: strictly type everything
     # TODO: Add docstrings
@@ -25,8 +26,8 @@ class ProductQueue(object):
     def __len__(self):
         return self._length
 
-    def add_node(self, n: int):
-        new_node = self.ProductQueueNode(n=n)
+    cpdef add_node(self, unsigned int n=0):
+        new_node = ProductQueueNode(n=n)
         if not self.head:
             self.head = new_node
             self.tail = new_node
@@ -39,14 +40,17 @@ class ProductQueue(object):
         else:
             self._curr_product *= n
 
-    def get_product(self):
+    cpdef get_product(self):
         if self._num_zeros:
             return 0
         else:
             return int(self._curr_product)
 
-    def print_queue(self):
-        print('→'.join(str(n) for n in self._print_queue_helper()))
+    cpdef print_queue(self):
+        l = []
+        for n in self._print_queue_helper():
+            l.append(str(n))
+        print('→'.join(l))
 
     def _print_queue_helper(self):
         temp_node = self.head
@@ -54,7 +58,7 @@ class ProductQueue(object):
             yield temp_node.n
             temp_node = temp_node.next
 
-    def remove_node(self):
+    cpdef remove_node(self):
         if not self.head:
             raise ValueError('Queue empty')
         popped_node = self.head
@@ -71,7 +75,7 @@ class ProductQueue(object):
         return popped_node.n
 
 
-def parse_grid(*, str grid):
+cdef parse_grid(str grid):
     return numpy.array(
         [
             [int(x) for x in row.strip().split(' ')]
@@ -81,5 +85,5 @@ def parse_grid(*, str grid):
     )
 
 
-def remove_whitespace(*, str number_str):
+cdef remove_whitespace(str number_str):
     return re.sub(r'\s+', '', number_str)
