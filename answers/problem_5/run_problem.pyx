@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from utils.proj_eul_math import general
+from utils.proj_eul_math cimport general
 
 
 cpdef run_problem(unsigned int max_value=20):

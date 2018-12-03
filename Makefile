@@ -1,7 +1,7 @@
 all: venv cython
 
 check_answers: cython
-	pytest tests/answers/check_correct_answers.py
+	pytest tests/answers/correct_answers_test.py
 
 cython:
 	python setup.py build_ext --inplace

@@ -10,17 +10,14 @@ def generate_triangle_numbers():
         yield int(n * (n + 1) / 2)
 
 
-def get_num_divisors(*, unsigned int num):
-    return numpy.product(
-        [
-            x + 1
-            for x in prime.get_prime_factorization(num=num).values()
-        ],
-    )
+cdef get_num_divisors(unsigned int num):
+    total_divisors = 1
+    for x in prime.get_prime_factorization(num=num).values():
+        total_divisors *= x + 1
+    return total_divisors
 
 
-def greatest_common_denominator(
-    *,
+cdef greatest_common_denominator(
     unsigned long long int a,
     unsigned long long int b,
 ):
@@ -32,8 +29,7 @@ def greatest_common_denominator(
     return a
 
 
-def least_common_multiple(
-    *,
+cdef least_common_multiple(
     unsigned long long int a,
     unsigned long long int b,
 ):
