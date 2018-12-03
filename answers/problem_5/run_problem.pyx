@@ -3,7 +3,7 @@ from utils.proj_eul_math import general
 
 
 cpdef run_problem(unsigned int max_value=20):
-    lcm = 1
+    cdef unsigned long long int lcm = 1
     for x in range(1, max_value + 1):
         lcm = general.least_common_multiple(
             a=lcm,

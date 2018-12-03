@@ -107,7 +107,7 @@ cpdef run_problem(unsigned int num_digits=10):
     total = 0
     for x in FIFTY_DIGIT_NUMBERS.strip().split('\n'):
         total += int(x)
-    return str(total)[:num_digits]
+    return int(str(total)[:num_digits])
 
 
 if __name__ == '__main__':

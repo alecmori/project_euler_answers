@@ -1,14 +1,10 @@
 all: venv cython
 
+check_answers: cython
+	pytest tests/answers/check_correct_answers.py
+
 cython:
 	python setup.py build_ext --inplace
-
-readme: venv
-	for i in {1..25}; do\
-		python -m readme2tex \
-			--output answers/problem_$$i/rationale.md \
-			answers/problem_$$i/rationale_in_latex.md; \
-		done
 
 run_all: venv cython
 	python utils/run_all_problems.py

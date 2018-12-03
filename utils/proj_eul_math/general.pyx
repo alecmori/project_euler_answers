@@ -19,7 +19,11 @@ def get_num_divisors(*, unsigned int num):
     )
 
 
-def greatest_common_denominator(*, unsigned int a, unsigned int b):
+def greatest_common_denominator(
+    *,
+    unsigned long long int a,
+    unsigned long long int b,
+):
     cdef int temp = 0
     while b > 0:
         temp = a
@@ -28,5 +32,9 @@ def greatest_common_denominator(*, unsigned int a, unsigned int b):
     return a
 
 
-def least_common_multiple(*, unsigned int a, unsigned int b):
+def least_common_multiple(
+    *,
+    unsigned long long int a,
+    unsigned long long int b,
+):
     return int(a * b / greatest_common_denominator(a=a, b=b))
