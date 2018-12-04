@@ -1,3 +1,5 @@
+# NOTE: These functions create values too big to convert to BigInteger.
+#   I have to find the best way to Cythonize this.
 cdef factorial(unsigned int n):
     i = 1
     while n > 1:

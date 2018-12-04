@@ -40,7 +40,7 @@ cdef class ProductQueue(object):
         else:
             self._curr_product *= n
 
-    cpdef get_product(self):
+    cpdef unsigned long long int get_product(self):
         if self._num_zeros:
             return 0
         else:
@@ -85,5 +85,5 @@ cdef parse_grid(str grid):
     )
 
 
-cdef remove_whitespace(str number_str):
+cdef str remove_whitespace(str number_str):
     return re.sub(r'\s+', '', number_str)

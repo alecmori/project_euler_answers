@@ -1,4 +1,4 @@
-cdef get_num_divisors(unsigned int num)
+cdef unsigned int get_num_divisors(unsigned int num)
 cdef greatest_common_denominator(
     unsigned long long int a,
     unsigned long long int b,

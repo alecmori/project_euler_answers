@@ -10,7 +10,7 @@ def generate_triangle_numbers():
         yield int(n * (n + 1) / 2)
 
 
-cdef get_num_divisors(unsigned int num):
+cdef unsigned int get_num_divisors(unsigned int num):
     total_divisors = 1
     for x in prime.get_prime_factorization(num=num).values():
         total_divisors *= x + 1
@@ -33,4 +33,4 @@ cdef least_common_multiple(
     unsigned long long int a,
     unsigned long long int b,
 ):
-    return int(a * b / greatest_common_denominator(a=a, b=b))
+    return a * b // greatest_common_denominator(a=a, b=b)
