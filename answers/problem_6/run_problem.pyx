@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-cpdef run_problem(unsigned int max_value=100):
+cpdef unsigned int run_problem(unsigned int max_value=100):
     sum_of_squares = 0
     for x in range(max_value + 1):
         sum_of_squares += x**2

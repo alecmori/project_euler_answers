@@ -3,7 +3,7 @@ import functools
 
 CACHE_SIZE = int(1e8)
 
-cpdef run_problem(unsigned int max_value=1000000):
+cpdef unsigned int run_problem(unsigned int max_value=1000000):
     cdef unsigned int max_integer = 0
     cdef unsigned int best_chain_len = 0
     cdef unsigned int curr_chain_len = 0
@@ -15,8 +15,11 @@ cpdef run_problem(unsigned int max_value=1000000):
     return max_integer
 
 
+# NOTE: Cython does not play well withe decorators. Using Python
+#   notation to indicate return value.
+# TODO: Use own implementation of dict for memoization
 @functools.lru_cache(maxsize=CACHE_SIZE)
-def count_collatz(unsigned int x):
+def count_collatz(unsigned int x) -> int:
     if x == 1:
         return 1
     if x % 2 == 0:

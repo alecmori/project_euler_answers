@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from utils.proj_eul_math import prime
 
-cpdef run_problem(unsigned int num_divisors=500):
+cpdef unsigned int run_problem(unsigned int num_divisors=500):
     cdef unsigned int n = 3
     cdef dict prime_factorization_1 = prime.get_prime_factorization(2)
     cdef dict prime_factorization_2 = prime.get_prime_factorization(3)

@@ -2,7 +2,7 @@
 from utils.proj_eul_math cimport general
 
 
-cpdef run_problem(unsigned int max_value=20):
+cpdef unsigned long long int run_problem(unsigned int max_value=20):
     cdef unsigned long long int lcm = 1
     for x in range(1, max_value + 1):
         lcm = general.least_common_multiple(

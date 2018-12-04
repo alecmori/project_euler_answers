@@ -1,1 +1,1 @@
-cpdef run_problem (power=*)
+cpdef unsigned long int run_problem(power=*)

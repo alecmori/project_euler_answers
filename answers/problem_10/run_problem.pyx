@@ -2,7 +2,7 @@
 from utils.proj_eul_math import prime
 
 
-cpdef run_problem(unsigned long int max_value=2000000):
+cpdef unsigned long long int run_problem(unsigned long int max_value=2000000):
     total = 0
     for p in prime.get_primes(max_num_inclusive=max_value):
         total += p

@@ -25,13 +25,13 @@ GIANT_NUMBER = """
 """
 
 
-cpdef run_problem(
+cpdef unsigned long int run_problem(
     unsigned int num_digits=13,
     str giant_num_str=GIANT_NUMBER,
 ):
     giant_number = lexical.remove_whitespace(number_str=giant_num_str)
     digit_queue = lexical.ProductQueue()
-    max_product = -1
+    cdef unsigned long int max_product = 0
     for digit in giant_number:
         digit_queue.add_node(n=int(digit))
         if len(digit_queue) > num_digits:

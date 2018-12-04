@@ -40,7 +40,7 @@ HUNDRED = len('hundred')
 THOUSAND = len('thousand')
 
 cpdef unsigned int run_problem(unsigned int max_value=1000):
-    total_count = 0
+    cdef unsigned int total_count = 0
     for number in range(1, max_value + 1):
         tens_and_one_count = _get_tens_and_one_count(
             number=number,
@@ -55,7 +55,9 @@ cpdef unsigned int run_problem(unsigned int max_value=1000):
 
 
 cdef unsigned int _get_tens_and_one_count(unsigned int number):
-    last_two_digits = number % 100
+    cdef unsigned int last_two_digits = number % 100
+    cdef unsigned int first_digit
+    cdef unsigned int last_digit
     if last_two_digits == 0:
         return 0
     elif last_two_digits < 20:
@@ -75,7 +77,7 @@ cdef unsigned int _get_hundreds_count(
     unsigned int number,
     unsigned int tens_and_one_count,
 ):
-    hundreds_digit = int(number/100) % 10
+    cdef unsigned int hundreds_digit = int(number/100) % 10
     if not hundreds_digit:
         return 0
     elif not tens_and_one_count:
@@ -87,6 +89,8 @@ cdef unsigned int _get_hundreds_count(
             len('and')
         )
 
+# TODO: Generalize this function to get all digits for finite but
+#   arbitrarily large number
 cdef unsigned int _get_thousand_count(unsigned int number):
     thousand_digit = int(number / 1000)
     if not thousand_digit:

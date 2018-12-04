@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from utils.proj_eul_math cimport combinatorics
 
-cpdef run_problem(unsigned int n=20):
+cpdef unsigned long long int run_problem(unsigned int n=20):
     return combinatorics.nCr(n=2 * n, r=n)
 
 

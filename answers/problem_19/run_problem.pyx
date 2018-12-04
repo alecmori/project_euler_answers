@@ -4,8 +4,11 @@ import datetime
 NUM_MONTHS = 12
 SUNDAY = 6
 
-cpdef run_problem(unsigned int min_year=1901, unsigned int max_year=2000):
-    num_sundays = 0
+cpdef unsigned int run_problem(
+    unsigned int min_year=1901,
+    unsigned int max_year=2000,
+):
+    cdef unsigned int num_sundays = 0
     for year in range(min_year, max_year + 1):
         for month in range(1, NUM_MONTHS + 1):
             num_sundays += (

@@ -29,7 +29,7 @@ GRID = """
 """
 
 
-cpdef run_problem(unsigned int num_digits=4):
+cpdef unsigned long int run_problem(unsigned int num_digits=4):
     parsed_grid = lexical.parse_grid(grid=GRID)
     return max(
         _get_largest_down_right_diagonal(grid=parsed_grid, num=num_digits),
@@ -43,11 +43,11 @@ cpdef run_problem(unsigned int num_digits=4):
         _get_largest_row(grid=parsed_grid.T, num=num_digits),
     )
 
-cdef _get_largest_down_right_diagonal(
+cdef unsigned long int _get_largest_down_right_diagonal(
     numpy.ndarray grid,
     unsigned int num,
 ):
-    max_product = -1
+    cdef unsigned long int max_product = 0
     # Tuple unpacking doesn't work as well in Cython
     n, m = grid.shape[0], grid.shape[1]
     cdef unsigned int x
@@ -84,8 +84,8 @@ cdef _get_largest_down_right_diagonal(
             y += 1
     return max_product
 
-cdef _get_largest_row(numpy.ndarray grid, unsigned int num):
-    max_product = -1
+cdef unsigned long int _get_largest_row(numpy.ndarray grid, unsigned int num):
+    cdef unsigned long int max_product = 0
     for row in grid:
         queue = lexical.ProductQueue()
         for element in row:

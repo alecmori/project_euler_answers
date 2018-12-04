@@ -2,15 +2,15 @@
 # TODO: Rewrite combinatorically a + b - (a \and b)
 
 
-cpdef run_problem(unsigned int n=1000, set multiple_set={3, 5}):
-    total = 0
+cpdef unsigned long long int run_problem(unsigned int n=1000, set multiple_set={3, 5}):
+    cdef unsigned long long int total = 0
     for num in range(n):
         if any_divides(num=num, multiple_set=multiple_set):
             total += num
     return total
 
 
-cdef any_divides(unsigned int num, set multiple_set):
+cdef unsigned int any_divides(unsigned int num, set multiple_set):
     return any(
         num % x == 0
         for x in multiple_set

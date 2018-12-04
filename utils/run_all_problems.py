@@ -56,7 +56,15 @@ def run_all_problems():
                     ),
                     answer=problem(),
                     # TODO: Pretty print
-                    sec=timeit.timeit(problem, number=NUM_TRIALS) / NUM_TRIALS,
+                    sec=(
+                        '%.4g' %
+                        float(
+                            timeit.timeit(
+                                problem,
+                                number=NUM_TRIALS,
+                            ) / NUM_TRIALS,
+                        )
+                    ),
                 ),
             )
         except Exception as e:

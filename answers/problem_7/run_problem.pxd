@@ -1,1 +1,1 @@
-cpdef run_problem(unsigned int num_prime=*)
+cpdef unsigned int run_problem(unsigned int num_prime=*)

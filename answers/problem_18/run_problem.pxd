@@ -1,1 +1,1 @@
-cpdef run_problem(str triangle=*)
+cpdef unsigned int run_problem(str triangle=*)

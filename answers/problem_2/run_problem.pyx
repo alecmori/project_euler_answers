@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-cpdef run_problem(unsigned long long int max_value=4000000):
+cpdef unsigned long long int run_problem(unsigned long long int max_value=4000000):
     total = 0
     for num in _fibonacci_iterator(max_value=max_value):
         if num % 2 == 0:
@@ -7,7 +7,7 @@ cpdef run_problem(unsigned long long int max_value=4000000):
     return total
 
 
-def _fibonacci_iterator(*, max_value):
+def _fibonacci_iterator(max_value=0):
     n1 = 1
     n2 = 2
     while n1 < max_value:
