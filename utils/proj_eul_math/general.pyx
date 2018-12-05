@@ -10,6 +10,16 @@ def generate_triangle_numbers():
         yield int(n * (n + 1) / 2)
 
 
+# TODO: Be smarter about this
+def get_divisors(unsigned long long int num=0):
+    cdef unsigned int n = 1
+    while n <= numpy.sqrt(num):
+        if num % n == 0:
+            yield n
+            yield int(num / n )
+        n += 1
+
+
 cdef unsigned int get_num_divisors(unsigned int num):
     total_divisors = 1
     for x in prime.get_prime_factorization(num=num).values():
