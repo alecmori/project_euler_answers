@@ -10,7 +10,7 @@ RATIONALE_PATH = 'rationale_in_latex.md'
 RUN_PROBLEM_PATH = 'run_problem.pyx'
 RUN_PROBLEM_TEMPLATE_CODE = """
 # -*- coding: utf-8 -*-
-def run_problem():
+cpdef unsigned int run_problem():
     pass
 
 
@@ -21,6 +21,10 @@ if __name__ == '__main__':
         print('Correct!')
     else:
         print('Incorrect!')
+"""
+RUN_PROBLEM_HEADER_PATH = 'run_problem.pxd'
+RUN_PROBLEM_HEADER_TEMPLATE_CODE = """
+cpdef unsigned int run_problem()
 """
 
 
@@ -72,6 +76,8 @@ def _make_new_problem_directory(problem_number):
         pass
     with open(os.path.join(new_directory, RUN_PROBLEM_PATH), 'w') as fh:
         fh.write(RUN_PROBLEM_TEMPLATE_CODE.strip())
+    with open(os.path.join(new_directory, RUN_PROBLEM_HEADER_PATH), 'w') as fh:
+        fh.write(RUN_PROBLEM_HEADER_TEMPLATE_CODE.strip())
 
 
 if __name__ == '__main__':
