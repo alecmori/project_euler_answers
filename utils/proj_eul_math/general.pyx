@@ -16,7 +16,9 @@ def get_divisors(unsigned long long int num=0):
     while n <= numpy.sqrt(num):
         if num % n == 0:
             yield n
-            yield int(num / n )
+            other_factor = int(num / n)
+            if other_factor != n:
+                yield other_factor
         n += 1
 
 

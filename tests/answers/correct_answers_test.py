@@ -28,6 +28,7 @@ PROBLEM_DIRECTORY_TO_ANSWER = {
     'problem_20': 648,
     'problem_21': 31626,
     'problem_22': 871198282,
+    'problem_23': 4179871,
 }
 
 
