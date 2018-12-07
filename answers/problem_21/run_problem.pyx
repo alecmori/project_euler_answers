@@ -25,11 +25,7 @@ cdef int is_pair_amicable(unsigned int n=0):
 #   Python syntax instead.
 @functools.lru_cache(maxsize=CACHE_SIZE)
 def _get_sum_proper_divisors(int n=0) -> int:
-    return sum(
-        d
-        for d in general.get_divisors(num=n)
-        if d != n
-    )
+    return general.get_sum_divisors(num=n) - n
 
 
 if __name__ == '__main__':

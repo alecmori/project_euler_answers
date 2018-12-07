@@ -24,8 +24,8 @@ def get_divisors(unsigned long long int num=0):
 
 cpdef unsigned long int get_sum_divisors(unsigned int num=0):
     # TODO: Explain combinatorically
-    if num == 0:
-        return 0
+    if num == 0 or num == 1:
+        return num
     cdef unsigned long int total_sum = 1
     cdef unsigned long int current_sum
     for p, num_primes in prime.get_prime_factorization(num=num).items():

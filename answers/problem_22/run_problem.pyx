@@ -5,6 +5,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASELINE_ORDER = ord('A') - 1
 NAMES_FILE = 'names.txt'
 
+
 cpdef unsigned long long int run_problem(str names_file=NAMES_FILE):
     with open(os.path.join(BASE_DIR, NAMES_FILE)) as fh:
         names_list = sorted(next(fh).split(','))
@@ -13,8 +14,9 @@ cpdef unsigned long long int run_problem(str names_file=NAMES_FILE):
         total += (index + 1) * _get_name_value(name=name)
     return total
 
-cdef unsigned int _get_name_value(str name=''):
-    cdef unsigned int total = 0
+
+cdef unsigned long int _get_name_value(str name=''):
+    cdef unsigned long int total = 0
     for c in name:
         if c == '"':
             continue
