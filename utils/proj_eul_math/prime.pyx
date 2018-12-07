@@ -67,11 +67,12 @@ cpdef list _sieve_of_atkin(unsigned long long int limit):
         r += 1
     return poss_prime
 
-cpdef dict get_prime_factorization(unsigned long long int num):
+cpdef dict get_prime_factorization(unsigned long long int num=0):
     if num <= 1:
         raise ValueError
     cdef dict prime_dict = {}
-    for prime in get_primes(max_num_inclusive=int(math.sqrt(num))):
+    cdef unsigned long long int upper_bound = int(math.sqrt(num))
+    for prime in get_primes(max_num_inclusive=upper_bound):
         if num % prime == 0:
             num_times_prime_divides = _get_num_times_prime_divides(
                 num=num,
@@ -79,12 +80,12 @@ cpdef dict get_prime_factorization(unsigned long long int num):
             )
             prime_dict[prime] = num_times_prime_divides
             num = num / prime**num_times_prime_divides
-        if prime > num:
-            return prime_dict
-    # If we have gone through all primes and still have found no
-    #   divisors, then this number is prime and thus its own prime
-    #   factorization.
-    return {num: 1}
+    if num != 1:
+        # TODO: Prove that this remainder must be a singular number and a prime
+        prime_dict.update(
+            {num: 1},
+        )
+    return prime_dict
 
 
 cpdef int _get_num_times_prime_divides(

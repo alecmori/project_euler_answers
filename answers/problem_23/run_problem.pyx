@@ -35,27 +35,16 @@ cdef list _get_sorted_abundant_numbers(
     unsigned int max_abundant_number=MAX_POSS_ABUNDANT_SUM_NUMBER,
 ):
     cdef list abundant_numbers = []
-    for i in range(max_abundant_number):
-        # TODO: Proof. If a is abundant number, then any number c*a is
-        if any(
-            i % abundant_number == 0
-            for abundant_number in abundant_numbers
-        ):
-            abundant_numbers.append(i)
-            # Getting sum of divisors is expensive
-            continue
+    for i in range(2, max_abundant_number):
         if _get_sum_proper_divisors(n=i) > i:
             abundant_numbers.append(i)
     return abundant_numbers
 
 
 cdef unsigned int _get_sum_proper_divisors(unsigned int n=0):
-    cdef unsigned int total = 0
-    for d in general.get_divisors(num=n):
-        if d == n:
-            continue
-        total += d
-    return total
+    if general.get_sum_divisors(num=n) - n < 0:
+        print(n)
+    return general.get_sum_divisors(num=n) - n
 
 
 if __name__ == '__main__':

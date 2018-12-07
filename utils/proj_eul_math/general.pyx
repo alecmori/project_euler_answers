@@ -22,8 +22,22 @@ def get_divisors(unsigned long long int num=0):
         n += 1
 
 
-cdef unsigned int get_num_divisors(unsigned int num):
-    total_divisors = 1
+cpdef unsigned long int get_sum_divisors(unsigned int num=0):
+    # TODO: Explain combinatorically
+    if num == 0:
+        return 0
+    cdef unsigned long int total_sum = 1
+    cdef unsigned long int current_sum
+    for p, num_primes in prime.get_prime_factorization(num=num).items():
+        current_sum = 0
+        for i in range(num_primes + 1):
+            current_sum += p**i
+        total_sum *= current_sum
+    return total_sum
+
+cdef unsigned int get_num_divisors(unsigned int num=0):
+    # TODO: Explain combinatorically
+    cdef unsigned int total_divisors = 1
     for x in prime.get_prime_factorization(num=num).values():
         total_divisors *= x + 1
     return total_divisors
