@@ -9,4 +9,5 @@ pytest-cython
 pytest-sugar
 pytest-xdist
 readme2tex
+requests
 tox

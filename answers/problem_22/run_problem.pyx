@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-import os
+import requests
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASELINE_ORDER = ord('A') - 1
-NAMES_FILE = 'names.txt'
+NAMES_URL = 'https://projecteuler.net/project/resources/p022_names.txt'
 
 
-cpdef unsigned long long int run_problem(str names_file=NAMES_FILE):
-    with open(os.path.join(BASE_DIR, NAMES_FILE)) as fh:
-        names_list = sorted(next(fh).split(','))
+cpdef unsigned long long int run_problem(str names_file=NAMES_URL):
+    cdef list names_list = sorted(
+        requests.get(NAMES_URL).text.split(','),
+    )
     cdef unsigned long long int total = 0
     for index, name in enumerate(names_list):
         total += (index + 1) * _get_name_value(name=name)
