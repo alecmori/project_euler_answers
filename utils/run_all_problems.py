@@ -61,8 +61,8 @@ def run_all_problems():
                         float(
                             timeit.timeit(
                                 problem,
-                                number=NUM_TRIALS,
-                            ) / NUM_TRIALS,
+                                number=args.num_trials,
+                            ) / args.num_trials,
                         )
                     ),
                 ),
@@ -87,6 +87,14 @@ def _get_args():
         help='The largest problem number you want to run',
         type=int,
         default=PROBLEM_UPPER_BOUND,
+    )
+    parser.add_argument(
+        '-n',
+        '--num-trials',
+        dest='num_trials',
+        help='The number of times you want each problem to run',
+        type=int,
+        default=NUM_TRIALS,
     )
     return parser.parse_args()
 

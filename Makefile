@@ -7,7 +7,7 @@ cython:
 	python setup.py build_ext --inplace
 
 run_all: venv cython
-	python utils/run_all_problems.py
+	python utils/run_all_problems.py -n 1
 
 venv:
 	virtualenv venv --python=python3.6
