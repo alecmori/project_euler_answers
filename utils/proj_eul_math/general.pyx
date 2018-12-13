@@ -3,6 +3,18 @@ import numpy
 from utils.proj_eul_math import prime
 
 
+def fibonacci_iterator(max_value=0):
+    if not max_value:
+        max_value = float('inf')
+    n1 = 1
+    n2 = 1
+    while n1 < max_value:
+        yield n1
+        temp = n1
+        n1 = n2
+        n2 = n1 + temp
+
+
 def generate_triangle_numbers():
     cdef int n = 0
     while True:
