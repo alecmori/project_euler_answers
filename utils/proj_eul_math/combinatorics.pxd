@@ -1,3 +1,3 @@
-cdef factorial(unsigned int n)
-cdef nCr(unsigned int n, unsigned int r)
-cdef nPr(unsigned int n, unsigned int r)
+#cpdef factorial(unsigned int n)
+cpdef nCr(unsigned int n, unsigned int r)
+cpdef nPr(unsigned int n, unsigned int r)

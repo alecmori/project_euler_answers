@@ -39,8 +39,9 @@ TWENTY_THROUGH_NINETY = [
 HUNDRED = len('hundred')
 THOUSAND = len('thousand')
 
-cpdef unsigned int run_problem(unsigned int max_value=1000):
-    cdef unsigned int total_count = 0
+
+def run_problem(max_value=1000):
+    total_count = 0
     for number in range(1, max_value + 1):
         tens_and_one_count = _get_tens_and_one_count(
             number=number,
@@ -54,17 +55,15 @@ cpdef unsigned int run_problem(unsigned int max_value=1000):
     return total_count
 
 
-cdef unsigned int _get_tens_and_one_count(unsigned int number):
-    cdef unsigned int last_two_digits = number % 100
-    cdef unsigned int first_digit
-    cdef unsigned int last_digit
+def _get_tens_and_one_count(number):
+    last_two_digits = number % 100
     if last_two_digits == 0:
         return 0
     elif last_two_digits < 20:
         return ONE_THROUGH_NINETEEN[last_two_digits]
     else:
         last_digit = last_two_digits % 10
-        first_digit = int(last_two_digits/10)
+        first_digit = int(last_two_digits / 10)
         if last_digit != 0:
             return (
                 ONE_THROUGH_NINETEEN[last_digit] +
@@ -73,11 +72,9 @@ cdef unsigned int _get_tens_and_one_count(unsigned int number):
         else:
             return TWENTY_THROUGH_NINETY[first_digit]
 
-cdef unsigned int _get_hundreds_count(
-    unsigned int number,
-    unsigned int tens_and_one_count,
-):
-    cdef unsigned int hundreds_digit = int(number/100) % 10
+
+def _get_hundreds_count(number, tens_and_one_count):
+    hundreds_digit = int(number / 100) % 10
     if not hundreds_digit:
         return 0
     elif not tens_and_one_count:
@@ -91,7 +88,9 @@ cdef unsigned int _get_hundreds_count(
 
 # TODO: Generalize this function to get all digits for finite but
 #   arbitrarily large number
-cdef unsigned int _get_thousand_count(unsigned int number):
+
+
+def _get_thousand_count(number):
     thousand_digit = int(number / 1000)
     if not thousand_digit:
         return 0

@@ -3,11 +3,10 @@ from utils.proj_eul_math import general
 
 MAX_POSS_ABUNDANT_SUM_NUMBER = 28123
 
-cpdef unsigned long int run_problem(
-    unsigned int max_abundant_number=MAX_POSS_ABUNDANT_SUM_NUMBER,
-):
-    cdef unsigned long int total = 0
-    cdef set abundant_sums = _get_all_abundant_sums(
+
+def run_problem(max_abundant_number=MAX_POSS_ABUNDANT_SUM_NUMBER):
+    total = 0
+    abundant_sums = _get_all_abundant_sums(
         max_abundant_number=max_abundant_number,
     )
     for i in range(max_abundant_number):
@@ -16,13 +15,11 @@ cpdef unsigned long int run_problem(
     return total
 
 
-cdef set _get_all_abundant_sums(
-    unsigned int max_abundant_number=MAX_POSS_ABUNDANT_SUM_NUMBER,
-):
-    cdef list sorted_abundant_numbers = _get_sorted_abundant_numbers(
+def _get_all_abundant_sums(max_abundant_number=MAX_POSS_ABUNDANT_SUM_NUMBER):
+    sorted_abundant_numbers = _get_sorted_abundant_numbers(
         max_abundant_number=max_abundant_number,
     )
-    cdef set all_summed_abundant_numbers = set()
+    all_summed_abundant_numbers = set()
     for n1 in sorted_abundant_numbers:
         for n2 in sorted_abundant_numbers:
             if n1 + n2 > max_abundant_number:
@@ -31,25 +28,23 @@ cdef set _get_all_abundant_sums(
     return all_summed_abundant_numbers
 
 
-cdef list _get_sorted_abundant_numbers(
-    unsigned int max_abundant_number=MAX_POSS_ABUNDANT_SUM_NUMBER,
+def _get_sorted_abundant_numbers(
+    max_abundant_number=MAX_POSS_ABUNDANT_SUM_NUMBER,
 ):
-    cdef list abundant_numbers = []
+    abundant_numbers = []
     for i in range(2, max_abundant_number):
         if _get_sum_proper_divisors(n=i) > i:
             abundant_numbers.append(i)
     return abundant_numbers
 
 
-cdef unsigned int _get_sum_proper_divisors(unsigned int n=0):
-    if general.get_sum_divisors(num=n) - n < 0:
-        print(n)
+def _get_sum_proper_divisors(n=0):
     return general.get_sum_divisors(num=n) - n
 
 
 if __name__ == '__main__':
     answer = run_problem()
-    #TODO
+    # TODO
     if answer == -1:
         print('Correct!')
     else:

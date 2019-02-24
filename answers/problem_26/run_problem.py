@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from utils.proj_eul_math import general
 
-cpdef unsigned int run_problem(unsigned int n=1000):
+
+def run_problem(n=1000):
     cached_values = dict()
     best_order_mod = 0
     best_int = 0
@@ -13,9 +14,7 @@ cpdef unsigned int run_problem(unsigned int n=1000):
     return best_int
 
 
-cpdef unsigned int get_order_mod(
-    unsigned int n, unsigned int base=10, dict cached_values=None,
-):
+def get_order_mod(n, base=10, cached_values=None):
     """Gets the order modulus of (n, b)
 
     Technically does not - that requires gcd(`n`, `b`) == 1. However,
@@ -45,7 +44,6 @@ cpdef unsigned int get_order_mod(
         order += 1
     cached_values[n] = order
     return order
-
 
 
 if __name__ == '__main__':

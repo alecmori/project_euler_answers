@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from utils.proj_eul_math cimport lexical
+from utils.proj_eul_math import lexical
 
 GIANT_NUMBER = """
 73167176531330624919225119674426574742355349194934
@@ -25,13 +25,10 @@ GIANT_NUMBER = """
 """
 
 
-cpdef unsigned long int run_problem(
-    unsigned int num_digits=13,
-    str giant_num_str=GIANT_NUMBER,
-):
+def run_problem(num_digits=13, giant_num_str=GIANT_NUMBER):
     giant_number = lexical.remove_whitespace(number_str=giant_num_str)
     digit_queue = lexical.ProductQueue()
-    cdef unsigned long int max_product = 0
+    max_product = 0
     for digit in giant_number:
         digit_queue.add_node(n=int(digit))
         if len(digit_queue) > num_digits:

@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from utils.proj_eul_math import prime
 
-cpdef unsigned int run_problem(unsigned int num_divisors=500):
-    cdef unsigned int n = 3
-    cdef dict prime_factorization_1 = prime.get_prime_factorization(2)
-    cdef dict prime_factorization_2 = prime.get_prime_factorization(3)
-    cdef unsigned int curr_num_divisors = _get_curr_num_divisors(
+
+def run_problem(num_divisors=500):
+    n = 3
+    prime_factorization_1 = prime.get_prime_factorization(2)
+    prime_factorization_2 = prime.get_prime_factorization(3)
+    curr_num_divisors = _get_curr_num_divisors(
         factorizations=[
             prime_factorization_1,
             prime_factorization_2,
@@ -24,9 +25,8 @@ cpdef unsigned int run_problem(unsigned int num_divisors=500):
     return int(n * (n - 1) / 2)
 
 
-#TODO: explain logic
-cdef unsigned int _get_curr_num_divisors(list factorizations):
-    cdef unsigned int total_product = 1
+def _get_curr_num_divisors(factorizations):
+    total_product = 1
     for factorization in factorizations:
         for key, value in factorization.items():
             if key == 2:

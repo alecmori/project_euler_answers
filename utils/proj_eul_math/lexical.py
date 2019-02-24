@@ -6,13 +6,14 @@ import numpy
 # TODO: Extend queue class?
 
 
-cdef class ProductQueueNode(object):
+class ProductQueueNode:
 
-    def __init__(self, unsigned int n):
+    def __init__(self, n):
         self.n = n
         self.next = None
 
-cdef class ProductQueue(object):
+
+class ProductQueue:
 
     # TODO: strictly type everything
     # TODO: Add docstrings
@@ -26,7 +27,7 @@ cdef class ProductQueue(object):
     def __len__(self):
         return self._length
 
-    cpdef add_node(self, unsigned int n=0):
+    def add_node(self, n=0):
         new_node = ProductQueueNode(n=n)
         if not self.head:
             self.head = new_node
@@ -40,17 +41,17 @@ cdef class ProductQueue(object):
         else:
             self._curr_product *= n
 
-    cpdef unsigned long long int get_product(self):
+    def get_product(self):
         if self._num_zeros:
             return 0
         else:
             return int(self._curr_product)
 
-    cpdef print_queue(self):
-        l = []
+    def print_queue(self):
+        print_list = []
         for n in self._print_queue_helper():
-            l.append(str(n))
-        print('→'.join(l))
+            print_list.append(str(n))
+        print('→'.join(print_list))
 
     def _print_queue_helper(self):
         temp_node = self.head
@@ -58,7 +59,7 @@ cdef class ProductQueue(object):
             yield temp_node.n
             temp_node = temp_node.next
 
-    cpdef remove_node(self):
+    def remove_node(self):
         if not self.head:
             raise ValueError('Queue empty')
         popped_node = self.head
@@ -75,7 +76,7 @@ cdef class ProductQueue(object):
         return popped_node.n
 
 
-cdef parse_grid(str grid):
+def parse_grid(grid):
     return numpy.array(
         [
             [int(x) for x in row.strip().split(' ')]
@@ -85,5 +86,5 @@ cdef parse_grid(str grid):
     )
 
 
-cdef str remove_whitespace(str number_str):
+def remove_whitespace(number_str):
     return re.sub(r'\s+', '', number_str)

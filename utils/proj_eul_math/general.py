@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy
+
 from utils.proj_eul_math import prime
 
 
@@ -16,15 +17,15 @@ def fibonacci_iterator(max_value=0):
 
 
 def generate_triangle_numbers():
-    cdef int n = 0
+    n = 0
     while True:
         n += 1
         yield int(n * (n + 1) / 2)
 
 
 # TODO: Be smarter about this
-def get_divisors(unsigned long long int num=0):
-    cdef unsigned int n = 1
+def get_divisors(num=0):
+    n = 1
     while n <= numpy.sqrt(num):
         if num % n == 0:
             yield n
@@ -34,12 +35,11 @@ def get_divisors(unsigned long long int num=0):
         n += 1
 
 
-cpdef unsigned long int get_sum_divisors(unsigned int num=0):
+def get_sum_divisors(num=0):
     # TODO: Explain combinatorically
     if num == 0 or num == 1:
         return num
-    cdef unsigned long int total_sum = 1
-    cdef unsigned long int current_sum
+    total_sum = 1
     for p, num_primes in prime.get_prime_factorization(num=num).items():
         current_sum = 0
         for i in range(num_primes + 1):
@@ -47,19 +47,17 @@ cpdef unsigned long int get_sum_divisors(unsigned int num=0):
         total_sum *= current_sum
     return total_sum
 
-cdef unsigned int get_num_divisors(unsigned int num=0):
+
+def get_num_divisors(num=0):
     # TODO: Explain combinatorically
-    cdef unsigned int total_divisors = 1
+    total_divisors = 1
     for x in prime.get_prime_factorization(num=num).values():
         total_divisors *= x + 1
     return total_divisors
 
 
-cpdef greatest_common_denominator(
-    unsigned long long int a,
-    unsigned long long int b,
-):
-    cdef int temp = 0
+def greatest_common_denominator(a, b):
+    temp = 0
     while b > 0:
         temp = a
         a = b
@@ -67,8 +65,5 @@ cpdef greatest_common_denominator(
     return a
 
 
-cpdef least_common_multiple(
-    unsigned long long int a,
-    unsigned long long int b,
-):
+def least_common_multiple(a, b):
     return a * b // greatest_common_denominator(a=a, b=b)

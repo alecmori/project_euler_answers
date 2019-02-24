@@ -7,7 +7,7 @@ from Cython import Build
 
 # TODO: Combine code from here with code from `utils/run_all_problems
 ANSWER_DIRECTORY = 'answers'
-RUN_PROBLEM = 'run_problem.pyx'
+RUN_PROBLEM = 'run_problem.py'
 
 
 def main():
@@ -15,10 +15,10 @@ def main():
         ext_modules=Build.cythonize(
             # TODO: Use kwarg
             [
-                'utils/proj_eul_math/combinatorics.pyx',
-                'utils/proj_eul_math/general.pyx',
-                'utils/proj_eul_math/lexical.pyx',
-                'utils/proj_eul_math/prime.pyx',
+                'utils/proj_eul_math/combinatorics.py',
+                'utils/proj_eul_math/general.py',
+                'utils/proj_eul_math/lexical.py',
+                'utils/proj_eul_math/prime.py',
             ] + _get_all_run_problems(
                 answer_dir=ANSWER_DIRECTORY,
                 module_name=RUN_PROBLEM,

@@ -103,7 +103,7 @@ FIFTY_DIGIT_NUMBERS = """
 """
 
 
-cpdef unsigned long long int run_problem(unsigned int num_digits=10):
+def run_problem(num_digits=10):
     total = 0
     for x in FIFTY_DIGIT_NUMBERS.strip().split('\n'):
         total += int(x)

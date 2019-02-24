@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from utils.proj_eul_math import general
 
-cpdef unsigned long long int run_problem(unsigned long long int max_value=4000000):
+
+def run_problem(max_value=4000000):
     total = 0
     for num in general.fibonacci_iterator(max_value=max_value):
         if num % 2 == 0:

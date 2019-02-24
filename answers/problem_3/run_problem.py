@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-import math
 from utils.proj_eul_math import prime
 
 
-cpdef unsigned int run_problem(unsigned long long int num=600851475143):
+def run_problem(num=600851475143):
     return max(prime.get_prime_factorization(num))
 
 

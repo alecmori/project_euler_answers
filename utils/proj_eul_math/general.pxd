@@ -1,5 +1,10 @@
+import cython
+
+@cython.locals(total_sum=cython.ulong, current_sum=cython.ulong)
 cpdef unsigned long int get_sum_divisors(unsigned int num=*)
-cdef unsigned int get_num_divisors(unsigned int num=*)
+@cython.locals(total_divisors=cython.uint)
+cpdef unsigned int get_num_divisors(unsigned int num=*)
+@cython.locals(temp=cython.uint)
 cpdef greatest_common_denominator(
     unsigned long long int a,
     unsigned long long int b,

@@ -31,7 +31,7 @@ def run_all_problems():
                 base_dir,
                 ANSWER_DIRECTORY,
                 problem_directory,
-                '{run_problem}.pyx'.format(
+                '{run_problem}.py'.format(
                     run_problem=RUN_PROBLEM,
                 ),
             ),

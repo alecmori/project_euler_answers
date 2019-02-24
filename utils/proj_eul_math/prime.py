@@ -4,6 +4,7 @@ import math
 DEFAULT_SIEVE_OF_ATKIN = 6
 DEFAULT_SIEVE_OF_ATKIN_BASE = 10
 
+
 def get_primes(*, max_num_inclusive=None):
     if max_num_inclusive:
         poss_primes = _sieve_of_atkin(limit=max_num_inclusive)
@@ -15,7 +16,7 @@ def get_primes(*, max_num_inclusive=None):
         prev = 0
         while True:
             limit = DEFAULT_SIEVE_OF_ATKIN_BASE ** i
-            #TODO: Use minimum in sieve of atkin to speed things up
+            # TODO: Use minimum in sieve of atkin to speed things up
             poss_primes = _sieve_of_atkin(limit=limit)
             for num in range(prev, len(poss_primes)):
                 if poss_primes[num]:
@@ -26,7 +27,7 @@ def get_primes(*, max_num_inclusive=None):
 
 # TODO: test the shit out of this function
 # TODO: Make poss_prime persist between calls somehow
-cpdef list _sieve_of_atkin(unsigned long long int limit):
+def _sieve_of_atkin(limit):
     """
     See formula from wikipedia
     https://en.wikipedia.org/wiki/Sieve_of_Atkin
@@ -42,9 +43,7 @@ cpdef list _sieve_of_atkin(unsigned long long int limit):
         poss_prime[3] = True
     if limit <= 4:
         return poss_prime
-    cdef unsigned int x = 1
-    cdef unsigned int y
-    cdef unsigned int n
+    x = 1
     while x * x < limit:
         y = 1
         while y * y < limit:
@@ -59,7 +58,7 @@ cpdef list _sieve_of_atkin(unsigned long long int limit):
                 poss_prime[n] ^= True
             y += 1
         x += 1
-    cdef unsigned int r = 5
+    r = 5
     while(r * r < limit):
         if poss_prime[r]:
             for i in range(r * r, limit, r * r):
@@ -67,11 +66,12 @@ cpdef list _sieve_of_atkin(unsigned long long int limit):
         r += 1
     return poss_prime
 
-cpdef dict get_prime_factorization(unsigned long long int num=0):
+
+def get_prime_factorization(num=0):
     if num <= 1:
         raise ValueError
-    cdef dict prime_dict = {}
-    cdef unsigned long long int upper_bound = int(math.sqrt(num))
+    prime_dict = {}
+    upper_bound = int(math.sqrt(num))
     for prime in get_primes(max_num_inclusive=upper_bound):
         if num % prime == 0:
             num_times_prime_divides = _get_num_times_prime_divides(
@@ -88,17 +88,15 @@ cpdef dict get_prime_factorization(unsigned long long int num=0):
     return prime_dict
 
 
-cpdef int _get_num_times_prime_divides(
-    unsigned long long int num, unsigned long long int prime,
-):
-    cdef unsigned int n = 0
+def _get_num_times_prime_divides(num, prime):
+    n = 0
     while num % prime == 0:
         num /= prime
         n += 1
     return n
 
 
-cpdef int is_prime(unsigned long long int num):
+def is_prime(num):
     if num <= 1:
         return False
     for prime in get_primes(max_num_inclusive=int(math.sqrt(num))):

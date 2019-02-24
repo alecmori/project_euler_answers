@@ -3,10 +3,11 @@ import functools
 
 CACHE_SIZE = int(1e8)
 
-cpdef unsigned int run_problem(unsigned int max_value=1000000):
-    cdef unsigned int max_integer = 0
-    cdef unsigned int best_chain_len = 0
-    cdef unsigned int curr_chain_len = 0
+
+def run_problem(max_value=1000000):
+    max_integer = 0
+    best_chain_len = 0
+    curr_chain_len = 0
     for i in range(1, 1 + max_value):
         curr_chain_len = count_collatz(i)
         if curr_chain_len > best_chain_len:
@@ -19,11 +20,11 @@ cpdef unsigned int run_problem(unsigned int max_value=1000000):
 #   notation to indicate return value.
 # TODO: Use own implementation of dict for memoization
 @functools.lru_cache(maxsize=CACHE_SIZE)
-def count_collatz(unsigned int x) -> int:
+def count_collatz(x: int) -> int:
     if x == 1:
         return 1
     if x % 2 == 0:
-        return count_collatz(int(x/2)) + 1
+        return count_collatz(int(x / 2)) + 1
     else:
         return count_collatz(3 * x + 1) + 1
 

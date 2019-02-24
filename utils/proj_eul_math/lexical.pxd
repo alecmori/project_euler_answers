@@ -11,5 +11,5 @@ cdef class ProductQueue:
     cpdef unsigned long long int get_product(self)
     cpdef print_queue(self)
     cpdef remove_node(self)
-cdef parse_grid(str grid)
-cdef str remove_whitespace(str number_str)
+cpdef parse_grid(grid)
+cpdef str remove_whitespace(number_str)
