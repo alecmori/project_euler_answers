@@ -55,7 +55,7 @@ cdef unsigned int get_num_divisors(unsigned int num=0):
     return total_divisors
 
 
-cdef greatest_common_denominator(
+cpdef greatest_common_denominator(
     unsigned long long int a,
     unsigned long long int b,
 ):
@@ -67,7 +67,7 @@ cdef greatest_common_denominator(
     return a
 
 
-cdef least_common_multiple(
+cpdef least_common_multiple(
     unsigned long long int a,
     unsigned long long int b,
 ):
