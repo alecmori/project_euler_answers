@@ -10,7 +10,7 @@ RATIONALE_PATH = 'rationale_in_latex.md'
 RUN_PROBLEM_PATH = 'run_problem.py'
 RUN_PROBLEM_TEMPLATE_CODE = """
 # -*- coding: utf-8 -*-
-cpdef run_problem(n):
+def run_problem(n):
     pass
 
 
@@ -24,7 +24,7 @@ if __name__ == '__main__':
 """
 RUN_PROBLEM_HEADER_PATH = 'run_problem.pxd'
 RUN_PROBLEM_HEADER_TEMPLATE_CODE = """
-cpdef unsigned int run_problem(unsigned int n)
+cpdef unsigned int run_problem(unsigned int n=*)
 """
 
 
