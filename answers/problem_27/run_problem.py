@@ -5,20 +5,28 @@ from utils.proj_eul_math import prime
 
 
 def run_problem(n=1000):
-    if n % 2 == 0:
-        n -= 1
     primes_generated = 1
     best_a = 0
     best_b = 0
     prime_cache = set(prime.get_primes(max_num_inclusive=n * math.sqrt(n)))
-    for a in range(-1 * n, n + 1, 2):
+    max_prime = n * n
+    for a in range(1, n + 1, 2):
         for b in prime.get_primes(max_num_inclusive=n):
+            if 4 * b < a * a:
+                continue
             current_primes_generated = get_consecutive_primes_generated(
-                a=a, b=b, prime_cache=prime_cache, max_prime=n * n,
+                a=a, b=b, prime_cache=prime_cache, max_prime=max_prime,
             )
             if current_primes_generated > primes_generated:
                 primes_generated = current_primes_generated
                 best_a = a
+                best_b = b
+            current_primes_generated = get_consecutive_primes_generated(
+                a=-a, b=b, prime_cache=prime_cache, max_prime=max_prime,
+            )
+            if current_primes_generated > primes_generated:
+                primes_generated = current_primes_generated
+                best_a = -a
                 best_b = b
     return best_a * best_b
 
