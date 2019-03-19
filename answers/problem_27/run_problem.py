@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import math
+
 from utils.proj_eul_math import prime
 
 
@@ -8,7 +10,7 @@ def run_problem(n=1000):
     primes_generated = 1
     best_a = 0
     best_b = 0
-    prime_cache = set(prime.get_primes(max_num_inclusive=n * n))
+    prime_cache = set(prime.get_primes(max_num_inclusive=n * math.sqrt(n)))
     for a in range(-1 * n, n + 1, 2):
         for b in prime.get_primes(max_num_inclusive=n):
             current_primes_generated = get_consecutive_primes_generated(
