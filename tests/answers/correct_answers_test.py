@@ -5,6 +5,7 @@ import importlib
 ANSWER_DIRECTORY = 'answers'
 RUN_PROBLEM = 'run_problem'
 
+# TODO: Convert answers to hashes
 PROBLEM_DIRECTORY_TO_ANSWER = {
     'problem_1': 233168,
     'problem_2': 4613732,
@@ -35,6 +36,7 @@ PROBLEM_DIRECTORY_TO_ANSWER = {
     'problem_27': -59231,
     'problem_28': 669171001,
     'problem_29': 9183,
+    'problem_35': 55,
 }
 
 
