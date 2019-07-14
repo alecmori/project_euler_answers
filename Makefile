@@ -10,7 +10,7 @@ run_all: venv cython
 	python utils/run_all_problems.py -n 1
 
 venv:
-	virtualenv venv --python=python3.6
+	virtualenv venv --python=python3.7
 	venv/bin/pip install -r requirements-minimal.txt
 	touch venv/bin/activate
 

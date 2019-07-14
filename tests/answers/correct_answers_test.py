@@ -36,6 +36,7 @@ PROBLEM_DIRECTORY_TO_ANSWER = {
     'problem_27': -59231,
     'problem_28': 669171001,
     'problem_29': 9183,
+    'problem_30': 443839,
     'problem_35': 55,
     'problem_67': 7273,
 }
