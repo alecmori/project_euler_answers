@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
+import hashlib
 import importlib
 import os
 import timeit

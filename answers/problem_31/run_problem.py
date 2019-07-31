@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+# TODO: See if generating functions are quicker
 def run_problem(n=200):
     DENOMINATIONS = sorted(
         [200, 100, 50, 20, 10, 5, 2, 1],
