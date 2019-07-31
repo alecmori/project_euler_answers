@@ -6,7 +6,6 @@ import importlib
 ANSWER_DIRECTORY = 'answers'
 RUN_PROBLEM = 'run_problem'
 
-# TODO: Convert answers to hashes
 PROBLEM_DIRECTORY_TO_ANSWER = {
     'problem_1': 'e1edf9d1967ca96767dcc2b2d6df69f4',
     'problem_2': '4194eb91842c8e7e6df099ca73c38f28',
