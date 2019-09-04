@@ -38,6 +38,7 @@ PROBLEM_DIRECTORY_TO_ANSWER = {
     'problem_29': '6f0ca67289d79eb35d19decbc0a08453',
     'problem_30': '27a1779a8a8c323a307ac8a70bc4489d',
     'problem_31': '142dfe4a33d624d2b830a9257e96726d',
+    'problem_32': '100f6e37d0b0564490a2ee27eff0660d',
     'problem_35': 'b53b3a3d6ab90ce0268229151c9bde11',
     'problem_67': '9d702ffd99ad9c70ac37e506facc8c38',
 }
