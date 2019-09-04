@@ -50,12 +50,16 @@ def run_all_problems():
         )
         try:
             problem = importlib.import_module(module_to_run).run_problem
+            if args.show_answers:
+                answer_str = 'Answer {answer}, took '.format(answer=problem())
+            else:
+                answer_str = ''
             print(
-                'Problem {num}: Answer {answer}, took {sec} seconds'.format(
+                'Problem {num}: {answer_str}{sec} seconds'.format(
                     num=_get_problem_number(
                         possible_problem_directory=problem_directory,
                     ),
-                    answer=problem(),
+                    answer_str=answer_str,
                     # TODO: Pretty print
                     sec=(
                         '%.4g' %
@@ -96,6 +100,13 @@ def _get_args():
         help='The number of times you want each problem to run',
         type=int,
         default=NUM_TRIALS,
+    )
+    parser.add_argument(
+        '-s',
+        '--show_answers',
+        dest='show_answers',
+        help='Whether or not to show the answer',
+        action='store_true',
     )
     return parser.parse_args()
 
