@@ -108,6 +108,17 @@ def _get_args():
         help='Whether or not to show the answer',
         action='store_true',
     )
+    parser.add_argument(
+        '-v',
+        '--version',
+        choices={'Cython', 'Python'},
+        dest='version',
+        help=(
+            'Which version of the code you are running. Currently supported '
+            'verions: Cython | Python'
+        ),
+        action='store_true',
+    )
     return parser.parse_args()
 
 

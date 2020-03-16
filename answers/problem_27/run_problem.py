@@ -8,7 +8,9 @@ def run_problem(n=1000):
     primes_generated = 1
     best_a = 0
     best_b = 0
-    prime_cache = set(prime.get_primes(max_num_inclusive=n * math.sqrt(n)))
+    prime_cache = set(
+        prime.get_primes(max_num_inclusive=int(n * math.sqrt(n)))
+    )
     max_prime = n * n
     for a in range(1, n + 1, 2):
         for b in prime.get_primes(max_num_inclusive=n):
