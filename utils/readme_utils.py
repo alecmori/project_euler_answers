@@ -13,7 +13,6 @@ HEADERS = {
 LINE_REGEX = r'\|\s+(\d+) \|\s+(.+) \|\s+(.+) \|'
 README_FILE = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'README.md')
-print(README_FILE)
 
 def adjust_time_for_problem(
     problem_number: typing.Text, version: typing.Text, new_time: typing.Text,

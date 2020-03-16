@@ -6,6 +6,8 @@ import os
 import timeit
 import traceback
 
+from utils import readme_utils
+
 ANSWER_DIRECTORY = 'answers'
 NUM_TRIALS = 10
 # TODO: Hack this better
@@ -43,38 +45,48 @@ def run_all_problems():
         )
         if problem_number < args.min or problem_number > args.max:
             continue
-        module_to_run = '{answer_dir}.{problem_dir}.{run_problem}'.format(
-            answer_dir=ANSWER_DIRECTORY,
-            problem_dir=problem_directory,
-            run_problem=RUN_PROBLEM,
+        run_problem(problem_directory=problem_directory, args=args)
+
+def run_problem(problem_directory, args):
+    module_to_run = '{answer_dir}.{problem_dir}.{run_problem}'.format(
+        answer_dir=ANSWER_DIRECTORY,
+        problem_dir=problem_directory,
+        run_problem=RUN_PROBLEM,
+    )
+    try:
+        problem = importlib.import_module(module_to_run).run_problem
+        if args.show_answers:
+            answer_str = 'Answer {answer}, took '.format(answer=problem())
+        else:
+            answer_str = ''
+        avg_time = '%.4g' % float(
+            timeit.timeit(
+                problem,
+                number=args.num_trials,
+            ) / args.num_trials
         )
-        try:
-            problem = importlib.import_module(module_to_run).run_problem
-            if args.show_answers:
-                answer_str = 'Answer {answer}, took '.format(answer=problem())
-            else:
-                answer_str = ''
-            print(
-                'Problem {num}: {answer_str}{sec} seconds'.format(
-                    num=_get_problem_number(
-                        possible_problem_directory=problem_directory,
-                    ),
-                    answer_str=answer_str,
-                    # TODO: Pretty print
-                    sec=(
-                        '%.4g' %
-                        float(
-                            timeit.timeit(
-                                problem,
-                                number=args.num_trials,
-                            ) / args.num_trials,
-                        )
-                    ),
+        print(
+            'Problem {num}: {answer_str}{sec} seconds'.format(
+                num=_get_problem_number(
+                    possible_problem_directory=problem_directory,
                 ),
-            )
-        except Exception as e:
-            print('Error Running Problem: {error}'.format(error=e))
-            traceback.print_exc()
+                answer_str=answer_str,
+                # TODO: Pretty print
+                sec=avg_time,
+            ),
+        )
+        if args.write_results:
+           readme_utils.adjust_time_for_problem(
+               problem_number=_get_problem_number(
+                   possible_problem_directory=problem_directory,
+               ),
+               version=args.version,
+               new_time=avg_time,
+               dry_run=False,
+           ) 
+    except Exception as e:
+        print('Error Running Problem: {error}'.format(error=e))
+        traceback.print_exc()
 
 
 def _get_args():
@@ -103,21 +115,27 @@ def _get_args():
     )
     parser.add_argument(
         '-s',
-        '--show_answers',
+        '--show-answers',
         dest='show_answers',
         help='Whether or not to show the answer',
         action='store_true',
     )
     parser.add_argument(
+        '-w',
+        '--write-results',
+        dest='write_results',
+        default=False,
+        help='Whether or not write the results to a file',
+        action='store_true',
+    )
+    parser.add_argument(
         '-v',
         '--version',
-        choices={'Cython', 'Python'},
         dest='version',
         help=(
             'Which version of the code you are running. Currently supported '
             'verions: Cython | Python'
         ),
-        action='store_true',
     )
     return parser.parse_args()
 
