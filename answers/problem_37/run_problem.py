@@ -44,7 +44,6 @@ def _get_left_truncated_numbers(n):
 
 if __name__ == '__main__':
     answer = run_problem()
-    print(answer)
     if answer == 3797:
         print('Correct!')
     else:
