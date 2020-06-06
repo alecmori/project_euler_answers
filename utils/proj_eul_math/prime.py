@@ -5,7 +5,7 @@ DEFAULT_SIEVE_OF_ATKIN = 6
 DEFAULT_SIEVE_OF_ATKIN_BASE = 10
 
 
-def get_primes(*, max_num_inclusive=None):
+def get_primes(max_num_inclusive=None):
     if max_num_inclusive:
         poss_primes = _sieve_of_atkin(limit=max_num_inclusive)
         for num in range(len(poss_primes)):

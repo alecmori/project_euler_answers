@@ -39,7 +39,13 @@ PROBLEM_DIRECTORY_TO_ANSWER = {
     'problem_30': '27a1779a8a8c323a307ac8a70bc4489d',
     'problem_31': '142dfe4a33d624d2b830a9257e96726d',
     'problem_32': '100f6e37d0b0564490a2ee27eff0660d',
+    'problem_33': 'b53b3a3d6ab90ce0268229151c9bde11',
+    'problem_34': 'b53b3a3d6ab90ce0268229151c9bde11',
     'problem_35': 'b53b3a3d6ab90ce0268229151c9bde11',
+    'problem_36': 'b53b3a3d6ab90ce0268229151c9bde11',
+    'problem_37': 'b53b3a3d6ab90ce0268229151c9bde11',
+    'problem_38': 'b53b3a3d6ab90ce0268229151c9bde11',
+    'problem_39': 'b53b3a3d6ab90ce0268229151c9bde11',
     'problem_48': 'b53b3a3d6ab90ce0268229151c9bde11',
     'problem_67': '9d702ffd99ad9c70ac37e506facc8c38',
 }
@@ -55,4 +61,5 @@ class TestAnswersCorrect:
                 run_problem=RUN_PROBLEM,
             )
             answer = importlib.import_module(module_to_run).run_problem()
+            print(problem_dir, answer, hashlib.md5(str(answer).encode()).hexdigest())
             assert hashlib.md5(str(answer).encode()).hexdigest() == hash_answer

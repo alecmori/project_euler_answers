@@ -15,6 +15,17 @@ def fibonacci_iterator(max_value=0):
         n1 = n2
         n2 = n1 + temp
 
+def is_square(n):
+  # https://en.wikipedia.org/wiki/Methods_of_computing_square_roots
+  x = n // 2
+  seen = set([x])
+  while x * x != n:
+    x = (x + (n // x)) // 2
+    if x in seen:
+        return False
+    seen.add(x)
+  return True
+
 
 def generate_triangle_numbers():
     n = 0
