@@ -1,8 +1,5 @@
 import cython
 
-@cython.locals(new_num=cython.ulong)
-cpdef unsigned int is_pentagonal(unsigned long n)
-
 cpdef unsigned long get_pentagonal(unsigned long n)
 
 # TODO: Read

@@ -18,7 +18,7 @@ def run_problem():
         # n^2 + n - 8 * score = 0
         # If discriminant of quad formula is square, then n has integer
         # solution.
-        if general.is_square(8 * score + 1):
+        if general.is_triangular(score):
           num_triangle += 1
     return num_triangle
 

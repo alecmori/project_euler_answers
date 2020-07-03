@@ -14,8 +14,10 @@ venv:
 	venv/bin/pip install -r requirements-minimal.txt
 	touch venv/bin/activate
 
-clean:
+clean: remove_cython
 	rm -rf venv
+
+remove_cython:
 	rm -rf answers/*/*.c
 	rm -rf answers/*/__pycache__
 	rm -rf answers/*/*.so
